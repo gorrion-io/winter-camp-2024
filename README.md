@@ -25,7 +25,7 @@ type CrewMember = {
 };
 ```
 
-2. Lista członków zespołu powinna zawierać tylko osoby w wieku od 30 do 55 lat.
+2. Lista członków zespołu powinna zawierać tylko osoby w wieku od 25 do 55 lat.
 
 3. Stwórz endpoint w pliku `pages/api/crew.ts` i używając metody stworzonej w `lib/crew.ts` zwróć listę członków zespołu w formie tablicy. Lista powinna być posortowana po imieniu w kolejności rosnącej. Dane powinny być paginowane i zwracać po 8 osób na stronę. Endpoint powinien przyjmować parametr `page` i zwracać odpowiednią stronę.
 
