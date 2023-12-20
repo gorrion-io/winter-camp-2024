@@ -1,40 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Gorrion Winter Camp 2024
 
-## Getting Started
+## Jak zrealizować zadanie?
 
-First, run the development server:
+Przeczytaj [CONTRIBUTING.md](./CONTRIBUTING.md) i zastosuj się do instrukcji.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Zadanie
+
+Badania na stacji kosmicznej w przygotowaniu do podróży na Marsa:
+
+Załoga stacji kosmicznej przygotowuje się do długotrwałego pobytu w kosmosie w ramach przygotowań do podróży na Marsa.
+
+**W pliku `lib/crew.ts` przygotuj metodę do łączenia list astronautów, inżynierów i lekarzy z plików JSON i YAML.**
+
+Warunki zaliczenia zadania:
+
+1. Typ pojedyńczego członka zespołu powinien wyglądać w następujący sposób:
+
+```ts
+type CrewMember = {
+  fullName: string;
+  nationality: string;
+  age: number;
+  profession: string;
+};
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Lista członków zespołu powinna zawierać tylko osoby w wieku od 30 do 55 lat.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+3. Stwórz endpoint w pliku `pages/api/crew.ts` i używając metody stworzonej w `lib/crew.ts` zwróć listę członków zespołu w formie tablicy. Lista powinna być posortowana po imieniu w kolejności rosnącej. Dane powinny być paginowane i zwracać po 8 osób na stronę. Endpoint powinien przyjmować parametr `page` i zwracać odpowiednią stronę.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+4. Użyj `tanstack/react-query` lub `swr` do pobrania danych z endpointu i wyświetlenia ich w komponencie `pages/task/[page].tsx` w formie kart. Komponent powinien zawierać paginację i możliwość zmiany strony.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Kryteria oceny
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Jakość kodu
+- Użyte narzędzia
+- Poprawność działania kodu
 
-## Learn More
+## Podpowiedzi
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- możesz zainstalować dowolne bilbioteki potrzebne do realizacji zadania
+- jeżeli brakuje danych, możesz je wymyślić lub wygenerować
