@@ -12,7 +12,7 @@ Fork repository by clicking on the fork button on the top of its GitHub page. Th
 
 ## Clone repository
 
-<img align="right" width="300" src="https://i.imgur.com/0rc1EWw.png" alt="clone repository" />
+<img align="right" width="300" src="https://i.imgur.com/A9FgFTJ.png" alt="clone repository" />
 
 Now clone the forked repository to your machine. Go to your GitHub account, open the forked repository, click on the clone button and then click the copy to clipboard icon.
 
