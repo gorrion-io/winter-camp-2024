@@ -14,7 +14,7 @@ import {
 } from './operationsOnCrewList';
 import { CrewResponse } from '@/types/crewResponse';
 
-export const getCrewMembersFormFiles = async (pageNumber: number): Promise<CrewResponse> => {
+export const getCrewMembersFromFiles = async (pageNumber: number): Promise<CrewResponse> => {
 	try {
 		const [jsonCrewMembers, yamlCrewMembers] = await Promise.all([
 			readJsonFile<JsonCrewMember[]>(PATH_TO_JSON_CREW_FILE),

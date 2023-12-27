@@ -1,4 +1,4 @@
-import { getCrewMembersFormFiles } from '@/lib/crew';
+import { getCrewMembersFromFiles } from '@/lib/crew';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 /**
@@ -11,8 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		const { page } = req.query;
 		const pageNumber = (page && Number(page)) || 1;
 
-		const crewMembers = await getCrewMembersFormFiles(pageNumber);
-
+		const crewMembers = await getCrewMembersFromFiles(pageNumber);
 		res.status(200).json(crewMembers);
 	} catch (_) {
 		res.status(200).json([]);
