@@ -1,6 +1,4 @@
 import { getCrewMembersFormFiles } from '@/lib/crew';
-import { readJsonFile } from '@/lib/read/readJsonFile';
-import { readYamlFile } from '@/lib/read/readYamlFile';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 /**
@@ -9,5 +7,10 @@ import type { NextApiRequest, NextApiResponse } from 'next';
  */
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-	res.status(200).json([]);
+	try {
+		const crewMembers = await getCrewMembersFormFiles();
+		res.status(200).json(crewMembers);
+	} catch (_) {
+		res.status(200).json([]);
+	}
 }
