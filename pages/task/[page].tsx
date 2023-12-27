@@ -3,6 +3,6 @@
  * @description Use tanstack/react-query or swr to fetch data from the endpoint. Prepare pagination.
  */
 
-export default function Task() {
-  return <div>Task</div>;
-}
+const Task = () => {};
+
+export default Task;
