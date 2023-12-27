@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <main
-      className={`flex min-h-screen flex-col place-content-center place-items-center p-24 ${inter.className}`}
+      className={`flex min-h-[100svh] flex-col place-content-center place-items-center p-24 ${inter.className}`}
     >
       <div className="flex place-items-center">
         <h1 className="text-4xl font-bold text-center">
