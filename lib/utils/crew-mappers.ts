@@ -1,5 +1,5 @@
-import type { JsonResult } from "@/lib/schemas/json-result-schema";
-import { YamlResult } from "@/lib/schemas/yaml-result-schema";
+import type { JsonResult } from '@/lib/schemas/json-result-schema';
+import { YamlResult } from '@/lib/schemas/yaml-result-schema';
 
 const validateAge = (age: number) => age >= 30 && age <= 40;
 

@@ -1,8 +1,7 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export type JsonCrewMember = z.infer<typeof jsonCrewMemberSchema>;
 export type JsonResult = z.infer<typeof jsonResultSchema>;
-
 
 const jsonCrewMemberSchema = z.object({
   firstName: z.string(),
@@ -13,4 +12,3 @@ const jsonCrewMemberSchema = z.object({
 });
 
 export const jsonResultSchema = z.array(jsonCrewMemberSchema);
-

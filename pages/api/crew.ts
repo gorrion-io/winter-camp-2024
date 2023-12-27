@@ -1,8 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { getCrewMembers } from "@/lib/crew";
-import { getPaginatedData } from "@/lib/utils/get-paginated-data";
-import { DEFAULT_TAKE_ITEMS } from "@/config/constants";
-import { parseToNumber } from "@/lib/utils/parse-to-number";
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+import { DEFAULT_TAKE_ITEMS } from '@/config/constants';
+import { getCrewMembers } from '@/lib/crew';
+import { getPaginatedData } from '@/lib/utils/get-paginated-data';
+import { parseToNumber } from '@/lib/utils/parse-to-number';
 
 /**
  * @todo Prepare an endpoint to return a list of crew members
@@ -13,8 +14,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  if (req.method !== "GET")
-    return res.status(405).json({ message: "Method not allowed" });
+  if (req.method !== 'GET')
+    return res.status(405).json({ message: 'Method not allowed' });
 
   const allMembers = await getCrewMembers();
 
@@ -27,7 +28,7 @@ export default async function handler(
 
   if (currentPage > totalPages) {
     return res.status(404).json({
-      message: "Page is out of range",
+      message: 'Page is out of range',
     });
   }
 

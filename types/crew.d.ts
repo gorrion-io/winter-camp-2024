@@ -1,11 +1,11 @@
 type CrewMember = {
-    fullName: string;
-    nationality: string;
-    age: number;
-    profession: string;
+  fullName: string;
+  nationality: string;
+  age: number;
+  profession: string;
 };
 
 type CrewResponse = {
-    data: CrewMember[];
-    pagination: Pagination;
+  data: CrewMember[];
+  pagination: Pagination;
 };

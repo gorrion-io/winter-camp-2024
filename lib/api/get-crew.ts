@@ -1,5 +1,5 @@
-import { DEFAULT_TAKE_ITEMS } from "@/config/constants";
-import { fetchApiData } from "@/lib/api/fetch-api-data";
+import { DEFAULT_TAKE_ITEMS } from '@/config/constants';
+import { fetchApiData } from '@/lib/api/fetch-api-data';
 
 interface GetCrewPayload {
   page?: number;
@@ -12,7 +12,7 @@ export const getCrew = async ({
 }: GetCrewPayload) => {
   if (page <= 0 || isNaN(page) || isNaN(take)) return;
   const res = await fetchApiData({
-    path: "/api/crew",
+    path: '/api/crew',
     query: {
       take,
       page,
@@ -21,5 +21,5 @@ export const getCrew = async ({
   const result = await res.json();
 
   if (res.ok) return result as CrewResponse;
-  throw Error(result.message || "Something went wrong try again later.")
+  throw Error(result.message || 'Something went wrong try again later.');
 };

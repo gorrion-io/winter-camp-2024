@@ -2,14 +2,14 @@
  * @todo Prepare a method to return a list of crew members
  * @description The list should only include crew members aged 30 to 40
  */
-import { readJsonFile, readYamlFile } from "@/lib/utils/read-files";
-import { JSON_FILE_PATH, YAML_FILE_PATH } from "@/config/constants";
-import { jsonResultSchema } from "@/lib/schemas/json-result-schema";
-import { yamlResultSchema } from "@/lib/schemas/yaml-result-schema";
+import { JSON_FILE_PATH, YAML_FILE_PATH } from '@/config/constants';
+import { jsonResultSchema } from '@/lib/schemas/json-result-schema';
+import { yamlResultSchema } from '@/lib/schemas/yaml-result-schema';
 import {
   mapJsonMemberToValidCrewMember,
   mapYamlMemberToValidCrewMember,
-} from "@/lib/utils/crew-mappers";
+} from '@/lib/utils/crew-mappers';
+import { readJsonFile, readYamlFile } from '@/lib/utils/read-files';
 
 export const getCrewMembers = async () => {
   const [jsonMember, yamlMembers] = await Promise.all([
