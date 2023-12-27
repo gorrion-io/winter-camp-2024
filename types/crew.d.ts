@@ -4,3 +4,8 @@ type CrewMember = {
     age: number;
     profession: string;
 };
+
+type CrewResponse = {
+    data: CrewMember[];
+    pagination: Pagination;
+};

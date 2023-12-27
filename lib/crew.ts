@@ -22,7 +22,7 @@ export const getCrewMembers = async () => {
     yamlResultSchema.parseAsync(yamlMembers),
   ]);
 
-  // I could use inlined array but I prefer to use a variable to make it more readable
+  // I could use inlined array, but I prefer to use a variable to make it more readable
   const validSortedMembers = [
     ...mapJsonMemberToValidCrewMember(parsedJsonMembers),
     ...mapYamlMemberToValidCrewMember(parsedYamlMembers),
