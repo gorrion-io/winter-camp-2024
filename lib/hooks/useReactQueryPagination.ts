@@ -4,7 +4,7 @@ import { getCrew } from '@/lib/api/get-crew';
 import { parseToNumber } from '@/lib/utils/parse-to-number';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
-export const usePagination = () => {
+export const useReactQueryPagination = () => {
   const { query } = useRouter();
   const page = parseToNumber(query.page) || 1;
   const { data, isLoading, isError, error } = useQuery({

@@ -9,7 +9,7 @@ import { CrewLayout } from '@/components/CrewLayout';
 import { CrewList } from '@/components/crew-list/CrewList';
 import { LoadingIcon } from '@/components/icons/LoadingIcon';
 import { Pagination } from '@/components/pagination/Pagination';
-import { usePagination } from '@/lib/hooks/usePagination';
+import { useReactQueryPagination } from '@/lib/hooks/useReactQueryPagination';
 import { parseToNumber } from '@/lib/utils/parse-to-number';
 
 export const getServerSideProps = async ({
@@ -25,7 +25,7 @@ export const getServerSideProps = async ({
 };
 
 export default function Task() {
-  const { isLoading, isError, error, data } = usePagination();
+  const { isLoading, isError, error, data } = useReactQueryPagination();
   if (isError) return <ErrorComponent error={error} />;
   if (isLoading || !data) return <LoadingComponent />;
 
