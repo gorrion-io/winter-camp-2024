@@ -2,6 +2,7 @@
  * @todo List crew members using the endpoint you created
  * @description Use tanstack/react-query or swr to fetch data from the endpoint. Prepare pagination.
  */
+import { NextPageContext } from 'next';
 import Link from 'next/link';
 
 import { CrewLayout } from '@/components/CrewLayout';
@@ -9,6 +10,19 @@ import { CrewList } from '@/components/crew-list/CrewList';
 import { LoadingIcon } from '@/components/icons/LoadingIcon';
 import { Pagination } from '@/components/pagination/Pagination';
 import { usePagination } from '@/lib/hooks/usePagination';
+import { parseToNumber } from '@/lib/utils/parse-to-number';
+
+export const getServerSideProps = async ({
+  query: { page },
+}: NextPageContext) => {
+  const parsedPage = parseToNumber(page);
+  if (!parsedPage) return { notFound: true };
+  return {
+    props: {
+      page: parsedPage,
+    },
+  };
+};
 
 export default function Task() {
   const { isLoading, isError, error, data } = usePagination();
