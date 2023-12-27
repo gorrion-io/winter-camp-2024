@@ -3,8 +3,10 @@
  * @description Use tanstack/react-query or swr to fetch data from the endpoint. Prepare pagination.
  */
 
+import { CrewMembers } from '@/components/crewMembers/CrewMembers';
+
 const Task = () => {
-	<main>22</main>;
+	return <CrewMembers />;
 };
 
 export default Task;

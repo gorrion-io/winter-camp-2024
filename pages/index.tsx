@@ -1,4 +1,6 @@
+import { CrewMembers } from '@/components/crewMembers/CrewMembers';
+
 const Home = () => {
-	return <div>Home</div>;
+	return <div>home</div>;
 };
 export default Home;

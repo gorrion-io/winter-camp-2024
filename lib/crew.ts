@@ -6,14 +6,15 @@
 import { JsonCrewMember, YamlCrewMember } from '@/types/crewMember';
 import { readJsonFile } from './read/readJsonFile';
 import { readYamlFile } from './read/readYamlFile';
-import { PATH_TO_JSON_CREW_FILE, PATH_TO_YAML_CREW_FILE } from './constants/filePaths';
+import { CREWMATES_PER_PAGE, PATH_TO_JSON_CREW_FILE, PATH_TO_YAML_CREW_FILE } from './constants';
 import {
 	filterCrewMembersByAge,
 	mapToCrewMember,
 	sortCrewMembersByName,
-} from './operationOnCrewList';
+} from './operationsOnCrewList';
+import { CrewResponse } from '@/types/crewResponse';
 
-export const getCrewMembersFormFiles = async () => {
+export const getCrewMembersFormFiles = async (pageNumber: number): Promise<CrewResponse> => {
 	try {
 		const [jsonCrewMembers, yamlCrewMembers] = await Promise.all([
 			readJsonFile<JsonCrewMember[]>(PATH_TO_JSON_CREW_FILE),
@@ -22,8 +23,15 @@ export const getCrewMembersFormFiles = async () => {
 
 		const mappedCrewList = mapToCrewMember(jsonCrewMembers, yamlCrewMembers);
 		const filteredCrewList = filterCrewMembersByAge(mappedCrewList);
+		const sortedCrewList = sortCrewMembersByName(filteredCrewList);
 
-		return sortCrewMembersByName(filteredCrewList);
+		const firstIndex = (pageNumber - 1) * CREWMATES_PER_PAGE;
+		const endIndex = firstIndex + CREWMATES_PER_PAGE;
+
+		return {
+			crewmates: sortedCrewList.slice(firstIndex, endIndex),
+			crewAmmount: sortedCrewList.length,
+		};
 	} catch (err) {
 		throw err;
 	}
