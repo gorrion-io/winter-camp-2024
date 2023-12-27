@@ -7,12 +7,24 @@ import { JsonCrewMember, YamlCrewMember } from '@/types/crewMember';
 import { readJsonFile } from './read/readJsonFile';
 import { readYamlFile } from './read/readYamlFile';
 import { PATH_TO_JSON_CREW_FILE, PATH_TO_YAML_CREW_FILE } from './constants/filePaths';
+import {
+	filterCrewMembersByAge,
+	mapToCrewMember,
+	sortCrewMembersByName,
+} from './operationOnCrewList';
 
-export const getCrewMembersFormFiels = async () => {
+export const getCrewMembersFormFiles = async () => {
 	try {
 		const [jsonCrewMembers, yamlCrewMembers] = await Promise.all([
 			readJsonFile<JsonCrewMember[]>(PATH_TO_JSON_CREW_FILE),
 			readYamlFile<YamlCrewMember[]>(PATH_TO_YAML_CREW_FILE),
 		]);
-	} catch (err) {}
+
+		const mappedCrewList = mapToCrewMember(jsonCrewMembers, yamlCrewMembers);
+		const filteredCrewList = filterCrewMembersByAge(mappedCrewList);
+
+		return sortCrewMembersByName(filteredCrewList);
+	} catch (err) {
+		throw err;
+	}
 };
