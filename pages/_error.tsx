@@ -8,7 +8,7 @@ interface Props {
 
 const Error: NextPage<Props> = ({ statusCode , message }) => {
   return (
-    <div className="flex min-h-screen flex-col place-content-center place-items-center p-24">
+    <div className="flex min-h-[100svh] flex-col place-content-center place-items-center p-24">
       <div className="flex flex-col space-y-2 place-items-center">
         <h1 className="text-4xl font-bold text-center">
           {statusCode
