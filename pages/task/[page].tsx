@@ -6,6 +6,7 @@
 import { CrewResponse } from "@/types/crewMember";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
+import CrewTable from "@/components/crewTable";
 
 export default function Task() {
   const router = useRouter();
@@ -27,10 +28,8 @@ export default function Task() {
   const crew = data!.paginatedCrewList;
 
   return (
-    <div>
-      {crew.map((member, i) => (
-        <div key={i}>{member.fullName}</div>
-      ))}
+    <div className="min-h-screen flex flex-col items-center justify-center">
+      <CrewTable crew={crew}></CrewTable>
     </div>
   );
 }
