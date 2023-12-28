@@ -4,3 +4,7 @@ export type CrewResponse = {
 	crewmates: CrewMember[];
 	crewAmmount: number;
 };
+
+export type CrewResponseError{
+	message:string
+}
