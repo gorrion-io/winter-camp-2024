@@ -8,6 +8,7 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 import { CrewMember as CrewMemberType } from '@/types/crewMember';
+import { Globe2, GraduationCap, Hourglass, User } from 'lucide-react';
 
 interface Props {
 	member: CrewMemberType;
@@ -17,13 +18,23 @@ export const CrewMember = ({ member: { fullName, age, nationality, profession } 
 	return (
 		<Card>
 			<CardHeader>
-				<CardTitle>{fullName}</CardTitle>
-				<CardDescription>Lorem, ipsum.</CardDescription>
+				<CardTitle className='flex gap-2'>
+					<User /> <span>{fullName}</span>
+				</CardTitle>
 			</CardHeader>
 			<CardContent>
-				<p>{age}</p>
-				<p>{nationality}</p>
-				<p>{profession}</p>
+				<div className='flex items-center gap-2'>
+					<Hourglass size={16} />
+					<span>{age}</span>
+				</div>
+				<div className='flex items-center gap-2'>
+					<Globe2 size={16} />
+					<span>{nationality}</span>
+				</div>
+				<div className='flex items-center gap-2'>
+					<GraduationCap size={16} />
+					<span>{profession}</span>
+				</div>
 			</CardContent>
 			<CardFooter></CardFooter>
 		</Card>

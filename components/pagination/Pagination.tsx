@@ -49,7 +49,7 @@ export const Pagination = ({ currentPage, maxItems }: Props) => {
 
 			{pages.map((page) => (
 				<Button
-					size={'sm'}
+					className='text-xs sm:text-sm'
 					onClick={() => {
 						router.push(`/task/${page}`);
 					}}
