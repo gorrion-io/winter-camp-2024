@@ -3,10 +3,23 @@
  * @description Use tanstack/react-query or swr to fetch data from the endpoint. Prepare pagination.
  */
 
-import { CrewMembers } from '@/components/crewMembers/CrewMembers';
+import { CrewInformationContainer } from '@/components/crewInformation/CrewInformationContainer';
+import { checkPageQuery } from '@/lib/utils';
+import { NextPageContext } from 'next';
 
 const Task = () => {
-	return <CrewMembers />;
+	return <CrewInformationContainer />;
 };
 
 export default Task;
+
+export const getServerSideProps = async ({ query: { page } }: NextPageContext) => {
+	const queryValue = checkPageQuery(page);
+
+	return {
+		notFound: !queryValue,
+		props: {
+			page: queryValue,
+		},
+	};
+};
