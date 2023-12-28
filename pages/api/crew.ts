@@ -1,10 +1,38 @@
+import { getFilteredCrewMembers } from "@/lib/crew";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-/**
- * @todo Prepare an endpoint to return a list of crew members
- * @description The endpoint should return a pagination of 8 users per page. The endpoint should accept a query parameter "page" to return the corresponding page.
- */
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  if (req.method !== "GET") {
+    return res.status(405).json({ message: "Method not allowed" });
+  }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.status(200).json([]);
+  const PAGE_SIZE = 8;
+
+  const page = parseInt(req.query.page as string);
+
+  if (!page || page < 1) {
+    return res.status(400).json({ message: "Invalid page number" });
+  }
+
+  const crewMembers = await getFilteredCrewMembers();
+  const totalCrewMembers = crewMembers.length;
+  const totalPages = Math.ceil(totalCrewMembers / PAGE_SIZE);
+
+  if (page > totalPages) {
+    return res.status(404).json({ message: "Page number exceeds total pages" });
+  }
+
+  const startIndex = (page - 1) * PAGE_SIZE;
+  const endIndex = startIndex + PAGE_SIZE;
+  const paginatedCrewMembers = crewMembers.slice(startIndex, endIndex);
+
+  return res.status(200).json({
+    page,
+    totalPages,
+    totalCrewMembers,
+    crewMembers: paginatedCrewMembers,
+  });
 }
