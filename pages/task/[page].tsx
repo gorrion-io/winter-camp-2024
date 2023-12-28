@@ -31,6 +31,9 @@ export default function Task() {
 
   return (
     <div>
+      <h1 className="text-3xl font-bold text-gray-300 mb-4 text-center pt-3">
+        Space Crew
+      </h1>
       <CrewTable crew={crew}></CrewTable>
       <Pagination totalItems={totalItems}></Pagination>
     </div>
