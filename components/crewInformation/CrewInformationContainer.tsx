@@ -4,8 +4,10 @@ import React, { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { CrewResponse } from '@/types/crewResponse';
 import { useParams } from 'next/navigation';
-import { LoadingState } from '../ui/loading-state';
 import { CREWMATES_PER_PAGE } from '@/lib/constants';
+import { CrewMembers } from './CrewMembers';
+import { CrewInformationLoading } from './CrewInformationLoading';
+import { Pagination } from '@/components/pagination/Pagination';
 
 export const CrewInformationContainer = () => {
 	const params = useParams();
@@ -21,7 +23,11 @@ export const CrewInformationContainer = () => {
 		queryFn: async () => {
 			const res = await fetch(`/api/crew?page=${pageNumber}`);
 
-			if (!res.ok) return null;
+			if (!res.ok)
+				return {
+					crewmates: [],
+					crewAmmount: 0,
+				};
 
 			const data = (await res.json()) as CrewResponse;
 			return data;
@@ -30,11 +36,20 @@ export const CrewInformationContainer = () => {
 		queryKey: ['geCrewInfomration', pageNumber],
 	});
 
-	console.log(crewInfomration);
-
-	if (crewInfomration && crewInfomration?.crewAmmount < CREWMATES_PER_PAGE * pageNumber) {
+	if (crewInfomration && crewInfomration.crewAmmount < CREWMATES_PER_PAGE * pageNumber) {
 		return null;
 	}
 
-	return <div className='mt-20'> {isLoading && <LoadingState />} crew members</div>;
+	return (
+		<>
+			{isLoading ? (
+				<CrewInformationLoading />
+			) : (
+				<>
+					<CrewMembers crew={crewInfomration?.crewmates} />
+					<Pagination />
+				</>
+			)}
+		</>
+	);
 };

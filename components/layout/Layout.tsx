@@ -11,11 +11,9 @@ type Props = {
 
 export const Layout = ({ children }: Props) => {
 	return (
-		<>
+		<div className={`flex-col bg-background min-h-screen relative ${inter.className}  `}>
 			<Nav />
-			<main className={`p-4 sm:p-6 md:p-8 max-w-7xl mx-auto min-h-screen h-0   ${inter.className}`}>
-				{children}
-			</main>
-		</>
+			<main className='flex-1 max-w-7xl mx-auto p-4 md:p-6'>{children}</main>
+		</div>
 	);
 };

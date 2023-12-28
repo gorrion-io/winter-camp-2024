@@ -7,12 +7,6 @@ import { CrewInformationContainer } from '@/components/crewInformation/CrewInfor
 import { checkPageQuery } from '@/lib/utils';
 import { NextPageContext } from 'next';
 
-const Task = () => {
-	return <CrewInformationContainer />;
-};
-
-export default Task;
-
 export const getServerSideProps = async ({ query: { page } }: NextPageContext) => {
 	const queryValue = checkPageQuery(page);
 
@@ -23,3 +17,9 @@ export const getServerSideProps = async ({ query: { page } }: NextPageContext) =
 		},
 	};
 };
+
+const Task = () => {
+	return <CrewInformationContainer />;
+};
+
+export default Task;
