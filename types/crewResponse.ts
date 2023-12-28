@@ -5,6 +5,6 @@ export type CrewResponse = {
 	crewAmmount: number;
 };
 
-export type CrewResponseError{
-	message:string
-}
+export type CrewResponseError = {
+	message: string;
+};

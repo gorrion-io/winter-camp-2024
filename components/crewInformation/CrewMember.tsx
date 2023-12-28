@@ -16,7 +16,7 @@ interface Props {
 
 export const CrewMember = ({ member: { fullName, age, nationality, profession } }: Props) => {
 	return (
-		<Card>
+		<Card className='hover:scale-[1.02] transition-transform duration-200'>
 			<CardHeader>
 				<CardTitle className='flex gap-2'>
 					<User /> <span>{fullName}</span>
