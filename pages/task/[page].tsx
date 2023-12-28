@@ -7,6 +7,7 @@ import { CrewResponse } from "@/types/crewMember";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import CrewTable from "@/components/crewTable";
+import Pagination from "@/components/Pagination";
 
 export default function Task() {
   const router = useRouter();
@@ -26,10 +27,12 @@ export default function Task() {
   if (isError) return <div>{`${error}`}</div>;
 
   const crew = data!.paginatedCrewList;
+  const totalItems = data!.originalListLength;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
+    <div>
       <CrewTable crew={crew}></CrewTable>
+      <Pagination totalItems={totalItems}></Pagination>
     </div>
   );
 }
