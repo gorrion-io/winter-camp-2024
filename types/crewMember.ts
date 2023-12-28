@@ -4,3 +4,8 @@ export type CrewMember = {
   age: number;
   profession: string;
 };
+
+export type CrewResponse = {
+  paginatedCrewList: CrewMember[];
+  originalListLength: number;
+};
