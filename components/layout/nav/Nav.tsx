@@ -1,8 +1,8 @@
 import React from 'react';
 import { ThemeToggle } from './ThemeToggle';
-import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 import { GithubIcon } from 'lucide-react';
+import Link from 'next/link';
 
 export const Nav = () => {
 	return (

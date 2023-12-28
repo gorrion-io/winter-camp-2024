@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { CrewMember as CrewMemberType } from '@/types/crewMember';
 import { Globe2, GraduationCap, Hourglass, User } from 'lucide-react';
 

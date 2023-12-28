@@ -1,7 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 import { Rocket } from 'lucide-react';
+import Link from 'next/link';
 
 export const Home = () => {
 	return (

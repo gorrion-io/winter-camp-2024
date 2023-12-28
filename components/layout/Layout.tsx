@@ -1,6 +1,5 @@
 import React from 'react';
 import { Nav } from './nav/Nav';
-
 import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });

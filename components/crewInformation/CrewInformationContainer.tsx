@@ -4,7 +4,6 @@ import React, { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { CrewResponse, CrewResponseError } from '@/types/crewResponse';
 import { useParams } from 'next/navigation';
-import { CREWMATES_PER_PAGE } from '@/lib/constants';
 import { CrewMembers } from './CrewMembers';
 import { CrewInformationLoading } from './CrewInformationLoading';
 import { Pagination } from '@/components/pagination/Pagination';
