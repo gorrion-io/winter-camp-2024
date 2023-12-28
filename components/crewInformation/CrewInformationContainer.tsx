@@ -47,7 +47,7 @@ export const CrewInformationContainer = () => {
 			) : (
 				<>
 					<CrewMembers crew={crewInfomration?.crewmates} />
-					<Pagination />
+					<Pagination currentPage={pageNumber} maxItems={crewInfomration?.crewAmmount ?? 0} />
 				</>
 			)}
 		</>
