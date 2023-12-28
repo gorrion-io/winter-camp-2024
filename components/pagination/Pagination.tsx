@@ -8,7 +8,7 @@ export const Pagination = ({
   previousPage,
   lastPage,
   currentPage,
-}: Pagination) => {
+}: PaginationResponse) => {
   const { goToPreviousPage, goToNextPage, changePage } = usePaginationLogic({
     nextPage,
     previousPage,

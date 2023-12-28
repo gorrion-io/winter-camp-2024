@@ -26,6 +26,7 @@ export const getServerSideProps = async ({
 
 export default function Task() {
   const { isLoading, isError, error, data } = useReactQueryPagination();
+
   if (isError) return <ErrorComponent error={error} />;
   if (isLoading || !data) return <LoadingComponent />;
 

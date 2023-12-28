@@ -1,4 +1,4 @@
-import { DEFAULT_TAKE_ITEMS } from '@/config/constants';
+import { CREW_MEMBERS_PER_PAGE } from '@/config/constants';
 import { fetchApiData } from '@/lib/api/fetch-api-data';
 
 interface GetCrewPayload {
@@ -8,7 +8,7 @@ interface GetCrewPayload {
 
 export const getCrew = async ({
   page = 1,
-  take = DEFAULT_TAKE_ITEMS,
+  take = CREW_MEMBERS_PER_PAGE,
 }: GetCrewPayload) => {
   if (page <= 0 || isNaN(page) || isNaN(take)) return;
   const res = await fetchApiData({

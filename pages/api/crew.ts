@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { DEFAULT_TAKE_ITEMS } from '@/config/constants';
+import { CREW_MEMBERS_PER_PAGE } from '@/config/constants';
 import { getCrewMembers } from '@/lib/crew';
-import { getPaginatedData } from '@/lib/utils/get-paginated-data';
+import { createPaginatedData } from '@/lib/utils/create-paginated-data';
 import { parseToNumber } from '@/lib/utils/parse-to-number';
 
 /**
@@ -22,7 +22,7 @@ export default async function handler(
   const { page, take } = req.query;
 
   const currentPage = parseToNumber(page) || 1;
-  const howMuchItems = parseToNumber(take) || DEFAULT_TAKE_ITEMS;
+  const howMuchItems = parseToNumber(take) || CREW_MEMBERS_PER_PAGE;
 
   const totalPages = Math.ceil(allMembers.length / howMuchItems);
 
@@ -35,7 +35,7 @@ export default async function handler(
   const nextPage = currentPage + 1 <= totalPages ? currentPage + 1 : null;
   const previousPage = currentPage - 1 > 0 ? currentPage - 1 : null;
 
-  const paginatedData = await getPaginatedData({
+  const paginatedData = createPaginatedData({
     data: allMembers,
     page: currentPage,
     take: howMuchItems,
@@ -51,6 +51,6 @@ export default async function handler(
       previousPage,
       nextPage,
       lastPage: totalPages,
-    } as Pagination,
-  });
+    },
+  } as CrewResponse);
 }

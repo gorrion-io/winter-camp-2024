@@ -1,4 +1,4 @@
-type Pagination = {
+type PaginationResponse = {
   currentPage: number;
   totalPages: number;
   itemsPerPage: number;

@@ -1,6 +1,5 @@
 import { z } from 'zod';
 
-export type YamlCrewMember = z.infer<typeof yamlCrewMemberSchema>;
 export type YamlResult = z.infer<typeof yamlResultSchema>;
 
 const yamlCrewMemberSchema = z.object({

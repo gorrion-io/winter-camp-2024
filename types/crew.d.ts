@@ -7,5 +7,5 @@ type CrewMember = {
 
 type CrewResponse = {
   data: CrewMember[];
-  pagination: Pagination;
+  pagination: PaginationResponse;
 };

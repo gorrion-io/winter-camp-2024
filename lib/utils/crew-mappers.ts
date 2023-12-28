@@ -1,7 +1,8 @@
 import type { JsonResult } from '@/lib/schemas/json-result-schema';
-import { YamlResult } from '@/lib/schemas/yaml-result-schema';
+import type { YamlResult } from '@/lib/schemas/yaml-result-schema';
 
-const validateAge = (age: number) => age >= 30 && age <= 40;
+const validateByAge = <T extends { age: number }>({ age }: T) =>
+  age >= 30 && age <= 40;
 
 export const mapJsonMemberToValidCrewMember = (
   data: JsonResult,
@@ -13,7 +14,7 @@ export const mapJsonMemberToValidCrewMember = (
         ...rest,
       }),
     )
-    .filter(({ age }) => validateAge(age));
+    .filter(validateByAge);
 };
 
 export const mapYamlMemberToValidCrewMember = (
@@ -24,10 +25,10 @@ export const mapYamlMemberToValidCrewMember = (
       const { name, years_old, occupation, nationality } = member;
       return {
         fullName: name,
+        nationality,
         age: years_old,
         profession: occupation,
-        nationality,
       };
     })
-    .filter(({ age }) => validateAge(age));
+    .filter(validateByAge);
 };

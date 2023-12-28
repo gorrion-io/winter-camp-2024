@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 
 type PaginationPayload = Pick<
-  Pagination,
+  PaginationResponse,
   'nextPage' | 'previousPage' | 'lastPage'
 >;
 

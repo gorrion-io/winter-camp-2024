@@ -1,14 +1,14 @@
-type PaginatedData<T> = {
+type PaginatedDataPayload<T> = {
   data: T[];
   page: number;
   take: number;
 };
 
-export const getPaginatedData = async <T>({
+export const createPaginatedData = <T>({
   take,
   page,
   data,
-}: PaginatedData<T>) => {
+}: PaginatedDataPayload<T>) => {
   const start = (page - 1) * take;
   const end = start + take;
   return [...data].slice(start, end);
