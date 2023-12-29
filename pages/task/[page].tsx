@@ -1,8 +1,3 @@
-/**
- * @todo List crew members using the endpoint you created
- * @description Use tanstack/react-query or swr to fetch data from the endpoint. Prepare pagination.
- */
-
 import { CrewResponse } from "@/types/crewMember";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
