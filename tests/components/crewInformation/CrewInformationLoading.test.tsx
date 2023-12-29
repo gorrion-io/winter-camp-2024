@@ -3,10 +3,10 @@ import { CrewInformationLoading } from '@/components/crewInformation/CrewInforma
 import { render, screen } from '@testing-library/react';
 
 describe('CrewInformationLoading Component', () => {
-	it('renders without crashing', () => {
-		render(<CrewInformationLoading />);
+    it('renders without crashing', () => {
+        render(<CrewInformationLoading />);
 
-		const svg = screen.getByTestId('crew-loader');
-		expect(svg).toBeInTheDocument();
-	});
+        const svg = screen.getByTestId('crew-loader');
+        expect(svg).toBeInTheDocument();
+    });
 });

@@ -1,10 +1,10 @@
 import { CrewMember } from './crewMember';
 
 export type CrewResponse = {
-	crewmates: CrewMember[];
-	crewAmmount: number;
+    crewmates: CrewMember[];
+    crewAmmount: number;
 };
 
 export type CrewResponseError = {
-	message: string;
+    message: string;
 };

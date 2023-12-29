@@ -9,24 +9,27 @@ import { CrewInformationError } from '../errors/CrewInformationError';
 import { useGetCrew } from '@/hooks/useGetCrew';
 
 export const CrewInformationContainer = () => {
-	const params = useParams();
-	const pageNumber = useMemo(() => {
-		return params && params.page ? Number(params.page) : 1;
-	}, [params]);
+    const params = useParams();
+    const pageNumber = useMemo(() => {
+        return params && params.page ? Number(params.page) : 1;
+    }, [params]);
 
-	const { data: crewInfomration, isLoading, error } = useGetCrew(pageNumber);
+    const { data: crewInfomration, isLoading, error } = useGetCrew(pageNumber);
 
-	if (error) return <CrewInformationError error={error} />;
-	return (
-		<>
-			{isLoading && !crewInfomration ? (
-				<CrewInformationLoading />
-			) : (
-				<>
-					<CrewMembers crew={crewInfomration?.crewmates} />
-					<Pagination currentPage={pageNumber} maxItems={crewInfomration?.crewAmmount ?? 0} />
-				</>
-			)}
-		</>
-	);
+    if (error) return <CrewInformationError error={error} />;
+    return (
+        <>
+            {isLoading && !crewInfomration ? (
+                <CrewInformationLoading />
+            ) : (
+                <>
+                    <CrewMembers crew={crewInfomration?.crewmates} />
+                    <Pagination
+                        currentPage={pageNumber}
+                        maxItems={crewInfomration?.crewAmmount ?? 0}
+                    />
+                </>
+            )}
+        </>
+    );
 };
