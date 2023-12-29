@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import CrewTable from "@/components/crewTable";
 import Pagination from "@/components/Pagination";
+import Link from "next/link";
 
 export default function Task() {
   const router = useRouter();
@@ -17,14 +18,25 @@ export default function Task() {
     queryKey: ["crew", page],
     queryFn: async (): Promise<CrewResponse> => {
       const res = await fetch(`/api/crew?page=${page}`);
-      if (!res.ok) throw new Error("Something went wrong!");
+      if (!res.ok) throw new Error("Page not found!");
 
       return res.json();
     },
   });
 
   if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>{`${error}`}</div>;
+  if (isError)
+    return (
+      <div>
+        <div>{`${error}`}</div>
+        <Link
+          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+          href="/task/1"
+        >
+          Go to page 1
+        </Link>
+      </div>
+    );
 
   const crew = data!.paginatedCrewList;
   const totalItems = data!.originalListLength;

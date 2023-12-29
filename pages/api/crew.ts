@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import joinCrew from "@/lib/crew";
-import { CrewMember, CrewResponse } from "@/types/crewMember";
+import { CrewMember, CrewResponse, ErrorResponse } from "@/types/crewMember";
 
 /**
  * @todo Prepare an endpoint to return a list of crew members
@@ -12,13 +12,18 @@ const paginateList = (pageNum: number, list: CrewMember[]) =>
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<CrewResponse>
+  res: NextApiResponse<CrewResponse | ErrorResponse>
 ) {
   const { page } = req.query;
   const crewList = joinCrew();
 
+  const paginatedCrewList = paginateList(Number(page), crewList);
+
+  if (paginatedCrewList.length === 0)
+    res.status(404).json({ error: "Page not found!" });
+
   res.status(200).json({
-    paginatedCrewList: paginateList(Number(page), crewList),
+    paginatedCrewList,
     originalListLength: crewList.length,
   });
 }

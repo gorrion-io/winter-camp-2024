@@ -9,3 +9,7 @@ export type CrewResponse = {
   paginatedCrewList: CrewMember[];
   originalListLength: number;
 };
+
+export type ErrorResponse = {
+  error: "Page not found!";
+};
