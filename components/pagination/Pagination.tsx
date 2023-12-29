@@ -49,6 +49,7 @@ export const Pagination = ({ currentPage, maxItems }: Props) => {
 
 			{pages.map((page) => (
 				<Button
+					data-isActive={page === currentPage ? 'active' : 'not-active'}
 					className='text-xs sm:text-sm'
 					onClick={() => {
 						router.push(`/task/${page}`);
