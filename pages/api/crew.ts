@@ -1,5 +1,6 @@
 import { CREWMATES_PER_PAGE } from '@/lib/constants';
 import { getCrewMembersFromFiles } from '@/lib/crew';
+import { crewResponseSchema } from '@/schema/crew/crewResponseSchema';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 /**
@@ -22,6 +23,13 @@ export default async function handler(
 
         if (crewMembers.crewAmmount < CREWMATES_PER_PAGE * pageNumber)
             res.status(404).json({ message: 'This page is out of range' });
+
+        const checkIsValidData = crewResponseSchema.safeParse(crewMembers);
+
+        if (!checkIsValidData.success)
+            res.status(400).json({
+                message: 'The data is in the wrong format.',
+            });
 
         res.status(200).json(crewMembers);
     } catch (err) {

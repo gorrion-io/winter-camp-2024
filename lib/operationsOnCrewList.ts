@@ -1,9 +1,11 @@
-import { CrewMember, JsonCrewMember, YamlCrewMember } from '@/types/crewMember';
+import { CrewMemberSchema } from '@/schema/crew/crewMemberSchema';
+import { JsonCrewMemberSchema } from '@/schema/crew/jsonCrewMemberSchema';
+import { YamlCrewMemberSchema } from '@/schema/crew/yamlCrewMemberSchema';
 
 export const mapToCrewMember = (
-    jsonMembers: JsonCrewMember[],
-    yamlMembers: YamlCrewMember[],
-): CrewMember[] => {
+    jsonMembers: JsonCrewMemberSchema[],
+    yamlMembers: YamlCrewMemberSchema[],
+): CrewMemberSchema[] => {
     const jsonCrewMembersMapped = jsonMembers.map((member) => {
         return {
             fullName: `${member.firstName} ${member.lastName}`,
@@ -26,12 +28,12 @@ export const mapToCrewMember = (
 };
 
 export const filterCrewMembersByAge = (
-    crewMembers: CrewMember[],
-): CrewMember[] => {
+    crewMembers: CrewMemberSchema[],
+): CrewMemberSchema[] => {
     return crewMembers.filter((member) => member.age >= 30 && member.age <= 40);
 };
 export const sortCrewMembersByName = (
-    crewMembers: CrewMember[],
-): CrewMember[] => {
+    crewMembers: CrewMemberSchema[],
+): CrewMemberSchema[] => {
     return crewMembers.sort((a, b) => a.fullName.localeCompare(b.fullName));
 };

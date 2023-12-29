@@ -1,9 +1,9 @@
-import { CrewMember as CrewMemberType } from '@/types/crewMember';
 import React from 'react';
 import { CrewMember } from './CrewMember';
+import { CrewMemberSchema } from '@/schema/crew/crewMemberSchema';
 
 interface Props {
-    crew?: CrewMemberType[];
+    crew?: CrewMemberSchema[];
 }
 
 export const CrewMembers = ({ crew }: Props) => {

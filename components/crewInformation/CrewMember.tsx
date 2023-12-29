@@ -1,10 +1,10 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CrewMember as CrewMemberType } from '@/types/crewMember';
 import { Globe2, GraduationCap, Hourglass, User } from 'lucide-react';
+import { CrewMemberSchema } from '@/schema/crew/crewMemberSchema';
 
 interface Props {
-    member: CrewMemberType;
+    member: CrewMemberSchema;
 }
 
 export const CrewMember = ({
