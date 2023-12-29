@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CrewMember as CrewMemberType } from '@/types/crewMember';
 import { Globe2, GraduationCap, Hourglass, User } from 'lucide-react';
 
@@ -29,7 +29,6 @@ export const CrewMember = ({ member: { fullName, age, nationality, profession } 
 					<span>{profession}</span>
 				</div>
 			</CardContent>
-			<CardFooter></CardFooter>
 		</Card>
 	);
 };

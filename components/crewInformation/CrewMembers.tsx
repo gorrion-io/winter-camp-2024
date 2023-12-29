@@ -7,7 +7,6 @@ interface Props {
 }
 
 export const CrewMembers = ({ crew }: Props) => {
-	console.log(crew);
 	return (
 		<>
 			<h1 className='mt-4 mb-10 text-xl sm:text-2xl font-semibold'>

@@ -37,13 +37,13 @@ describe('Pagination', () => {
 		const { rerender } = render(<Pagination currentPage={activePage} maxItems={10} />);
 
 		const currentActiveBtn = screen.getByRole('button', { name: activePage.toString() });
-		expect(currentActiveBtn).toHaveAttribute('data-isActive', 'active');
+		expect(currentActiveBtn).toHaveAttribute('data-testid', 'active');
 
 		activePage = 2;
 		rerender(<Pagination currentPage={activePage} maxItems={10} />);
 
 		const nextCurrentActiveBtn = screen.getByRole('button', { name: activePage.toString() });
-		expect(nextCurrentActiveBtn).toHaveAttribute('data-isActive', 'active');
+		expect(nextCurrentActiveBtn).toHaveAttribute('data-testid', 'active');
 
 		jest.clearAllMocks();
 	});

@@ -1,14 +1,8 @@
-enum Professions {
-	astronaut = 'astronaut',
-	doctor = 'doctor',
-	engineer = 'engineer',
-}
-
 export type CrewMember = {
 	fullName: string;
 	nationality: string;
 	age: number;
-	profession: Professions;
+	profession: string;
 };
 
 export type JsonCrewMember = {
@@ -16,12 +10,12 @@ export type JsonCrewMember = {
 	lastName: string;
 	nationality: string;
 	age: number;
-	profession: Professions;
+	profession: string;
 };
 
 export type YamlCrewMember = {
 	name: string;
 	nationality: string;
 	years_old: number;
-	occupation: Professions;
+	occupation: string;
 };
