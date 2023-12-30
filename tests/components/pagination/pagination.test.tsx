@@ -53,4 +53,23 @@ describe('Pagination', () => {
 
         jest.clearAllMocks();
     });
+
+    it('Does not render pagination if not needed  ', () => {
+        const { container } = render(
+            <Pagination currentPage={1} maxItems={5} />,
+        );
+
+        expect(container).toBeNull;
+
+        jest.clearAllMocks();
+    });
+    it('Does not render pagination if not needed ', () => {
+        const { container } = render(
+            <Pagination currentPage={1} maxItems={0} />,
+        );
+
+        expect(container).toBeNull;
+
+        jest.clearAllMocks();
+    });
 });

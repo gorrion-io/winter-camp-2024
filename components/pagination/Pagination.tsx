@@ -46,6 +46,8 @@ export const Pagination = ({ currentPage, maxItems }: Props) => {
         setPages(pageNumbers);
     }, [currentPage, isSmallScreen, lastPage]);
 
+    if (lastPage <= 1) return null;
+
     return (
         <nav
             role="navigation"
