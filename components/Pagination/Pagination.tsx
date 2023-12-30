@@ -81,7 +81,7 @@ const Pagination = ({
   return (
     <nav>
       <ul className="flex flex-wrap items-center gap-3">
-        <li>
+        <li data-testid="pagination-back">
           <PaginationButton
             disabled={backArrowDisabled}
             onClick={() => handleArrowClick("left")}
@@ -105,7 +105,7 @@ const Pagination = ({
           </li>
         ))}
 
-        <li>
+        <li data-testid="pagination-next">
           <PaginationButton
             disabled={nextArrowDisabled}
             onClick={() => handleArrowClick("right")}

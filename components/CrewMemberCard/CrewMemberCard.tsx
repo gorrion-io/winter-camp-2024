@@ -40,7 +40,7 @@ const CrewMemberCard = ({ crewMember }: Props) => {
     <li className="group flex flex-col rounded bg-slate-800  text-white ring-1 ring-slate-900/5">
       <div className="align-center flex flex-col items-center gap-4 p-4">
         <div className="flex h-[110px] w-[110px] items-center justify-center rounded-full bg-slate-700 transition-colors group-hover:bg-blue-500">
-          <FontAwesomeIcon icon={icon} size="4x" />
+          <FontAwesomeIcon icon={icon} size="4x" data-testid="icon" />
         </div>
         <div className="text-center">
           <h2 className="text-2xl">{fullName}</h2>
