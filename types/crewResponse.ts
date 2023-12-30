@@ -1,3 +1,3 @@
 export type CrewResponseError = {
-  message: string;
+    message: string;
 };
