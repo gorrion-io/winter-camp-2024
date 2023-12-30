@@ -1,9 +1,11 @@
 import { getFilteredCrewMembers } from "@/lib/crew";
+import { CrewMember } from "@/lib/types/CrewMemberTypes";
+import { PaginatedResponse } from "@/lib/types/PaginatedResponse";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method !== "GET") {
     return res.status(405).json({ message: "Method not allowed" });
@@ -29,10 +31,12 @@ export default async function handler(
   const endIndex = startIndex + PAGE_SIZE;
   const paginatedCrewMembers = crewMembers.slice(startIndex, endIndex);
 
-  return res.status(200).json({
+  const resData: PaginatedResponse<CrewMember> = {
     page,
     totalPages,
-    totalCrewMembers,
-    crewMembers: paginatedCrewMembers,
-  });
+    totalData: totalCrewMembers,
+    data: paginatedCrewMembers,
+  };
+
+  return res.status(200).json(resData);
 }
