@@ -20,7 +20,7 @@ type YamlMember = {
   occupation: string;
 };
 
-type CrewMember = {
+export type CrewMember = {
   fullName: string;
   nationality: string;
   age: number;
