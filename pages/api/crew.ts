@@ -32,5 +32,7 @@ export default async function handler(
   const pageSize = 8;
   const crewList = await chosenCrew();
   const sortedCrewList = sortArray(crewList);
-  res.status(200).json(paginate(sortedCrewList, pageSize, page));
+  const totalPages = Math.ceil(sortedCrewList.length / pageSize);
+  const paginatedList = paginate(sortedCrewList, pageSize, page);
+  res.status(200).json({ paginatedList, totalPages });
 }
