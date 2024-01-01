@@ -1,6 +1,7 @@
 //@ts-nocheck
 import handler from '@/pages/api/crew'
 
+describe('handler function', () => {
 it('should return the correct number of crew members and total pages in the response when a valid page number is provided', () => {
   const req = { query: { page: '1' } }
   const res = {
@@ -31,4 +32,5 @@ it('should return an error response with status code 404 when an invalid page nu
   handler(req, res)
   expect(res.status).toHaveBeenCalledWith(404)
   expect(res.json).toHaveBeenCalledWith({ error: 'Page not found' })
+})
 })
