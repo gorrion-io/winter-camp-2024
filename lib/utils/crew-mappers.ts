@@ -1,8 +1,9 @@
 import type { JsonResult } from '@/lib/schemas/json-result-schema';
 import type { YamlResult } from '@/lib/schemas/yaml-result-schema';
+import { CREW_MAX_AGE, CREW_MIN_AGE } from '@/config/constants';
 
-const validateByAge = <T extends { age: number }>({ age }: T) =>
-  age >= 30 && age <= 40;
+export const validateByAge = <T extends { age: number }>({ age }: T) =>
+  age >= CREW_MIN_AGE && age <= CREW_MAX_AGE;
 
 export const mapJsonMemberToValidCrewMember = (
   data: JsonResult,
