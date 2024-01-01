@@ -1,16 +1,16 @@
-import { ApiResponse } from "@/types/apiDataTypes";
-import { wait } from "./wait";
+import { ApiResponse } from '@/types/apiDataTypes'
+import { wait } from './wait'
 
 export const getCrew = async ({ queryKey }: any) => {
-  await wait(500);
+  await wait(500)
 
-  const [, { page }] = queryKey;
+  const [, { page }] = queryKey
 
-  const res = await fetch(`/api/crew?page=${page}`);
+  const res = await fetch(`/api/crew?page=${page}`)
 
-  if (!res.ok) throw new Error(res.statusText);
+  if (!res.ok) throw new Error(res.statusText)
 
-  const data = (await res.json()) as ApiResponse;
+  const data = (await res.json()) as ApiResponse
 
-  return data;
-};
+  return data
+}
