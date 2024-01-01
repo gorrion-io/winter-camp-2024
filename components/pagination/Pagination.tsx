@@ -19,7 +19,7 @@ export const Pagination = ({
       aria-label='Pagination'
       className='inline-flex m-4 space-x-2 rounded-md shadow-sm'
     >
-      <PaginationButton disabled={!previousPage} onClick={goToPreviousPage}>
+      <PaginationButton disabled={!previousPage} onClick={goToPreviousPage} data-testid='prev-btn' >
         <LeftIcon className='w-5 h-5' />
       </PaginationButton>
       {Array(lastPage)
@@ -33,7 +33,7 @@ export const Pagination = ({
             {i + 1}
           </PaginationButton>
         ))}
-      <PaginationButton disabled={!nextPage} onClick={goToNextPage}>
+      <PaginationButton disabled={!nextPage} onClick={goToNextPage} data-testid='next-btn'>
         <RightIcon className='w-5 h-5' />
       </PaginationButton>
     </nav>
