@@ -1,10 +1,29 @@
+import { mergeCrew } from "@/lib/crew";
+import { ApiResponse, ErrorResponse } from "@/types/apiDataTypes";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-/**
- * @todo Prepare an endpoint to return a list of crew members
- * @description The endpoint should return a pagination of 8 users per page. The endpoint should accept a query parameter "page" to return the corresponding page.
- */
+const PAGE_SIZE = 8;
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.status(200).json([]);
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ApiResponse | ErrorResponse>
+) {
+  const { page = "1" } = req.query;
+  const mergedCrew = mergeCrew();
+  const totalCrewMembers = mergedCrew.length;
+  const totalPages = Math.ceil(totalCrewMembers / PAGE_SIZE);
+  const requestedPage = Number(page as string);
+
+  if (requestedPage < 1 || requestedPage > totalPages) {
+    const errorResponse = { error: "Page not found" };
+    res.status(404).json(errorResponse);
+    return;
+  }
+
+  const startIndex = (requestedPage - 1) * PAGE_SIZE;
+  const endIndex = startIndex + PAGE_SIZE;
+  const pagedCrewMembers = mergedCrew.slice(startIndex, endIndex);
+  const apiResponse = { pagedCrewMembers, totalPages };
+
+  res.status(200).json(apiResponse);
 }
