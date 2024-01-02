@@ -1,43 +1,56 @@
-# Gorrion Winter Camp 2024
+## Task: [task](README-%20task.md)
 
-## Jak zrealizować zadanie?
+## Technologies
 
-Przeczytaj [CONTRIBUTING.md](./CONTRIBUTING.md) i zastosuj się do instrukcji.
+- Next.js
+- TanStack/React Query
+- Tailwind
 
-## Zadanie
+## Construction:
 
-Badania na stacji kosmicznej w przygotowaniu do podróży na Marsa:
+To make the application desktop more readable, the application files has been divided into folders:
 
-Załoga stacji kosmicznej przygotowuje się do długotrwałego pobytu w kosmosie w ramach przygotowań do podróży na Marsa.
+`context` - here is contexts with logic side app like fetch function and states included in Providers's functions nested with \_app.tsx file. It's created to avoid props driling.
 
-**W pliku `lib/crew.ts` przygotuj metodę do łączenia list astronautów, inżynierów i lekarzy z plików JSON i YAML.**
+The results gets to [page].tsx - displaying results as a cards and <Pagination> component -
+displaying paginations with posibility to change pages includes nested selector <PaginationSelector> - to change page size.
 
-Warunki zaliczenia zadania:
+`components` - app contains with several divided children component
+`styles` - css for global style and specified components
+`lib/models` - all typical types characteristic for typeScript
+`lib/crew` - method for get lists of astronauts, engineers and doctors from JSON and YAML files, sorted team members in alphabetical order
+`lib/paginator` - pagined crew for specyfic PageRequest
+`api/crew` - enpoint for get crew
+`error` - if something goes wrong app shows alert on the page
 
-1. Typ pojedyńczego członka zespołu powinien wyglądać w następujący sposób:
+## Paginations with dots
 
-```ts
-type CrewMember = {
-  fullName: string;
-  nationality: string;
-  age: number;
-  profession: string;
-};
+Pagination is adjusted to selected value in select.
+When is selected two elements on page, pagination also is extended by dots.
+Dots are a mechanism responsible for showing hidden range elements.
+
+![Pagination](./pagintion.png)
+
+## Tests
+
+Application also contains unit tests for checking pagination method
+
+## Run applications by Next:
+
+After downloading file, first pass to the correct path and install `node.modules` environment, in terminal write:
+
+```bash
+npm install
 ```
 
-2. Lista członków zespołu powinna zawierać tylko osoby w wieku od 30 do 40 lat.
+To run the application, in terminals in the main path for both write:
 
-3. Stwórz endpoint w pliku `pages/api/crew.ts` i używając metody stworzonej w `lib/crew.ts` zwróć listę członków zespołu w formie tablicy. Lista powinna być posortowana po imieniu w kolejności alfabetycznej. Dane powinny być paginowane i zwracać po 8 osób na stronę. Endpoint powinien przyjmować parametr `page` i zwracać odpowiednią stronę.
+```bash
+npm run dev
+```
 
-4. Użyj `tanstack/react-query` lub `swr` do pobrania danych z endpointu i wyświetlenia ich w komponencie `pages/task/[page].tsx` w formie kart. Komponent powinien zawierać paginację i możliwość zmiany strony.
+Run tests
 
-## Kryteria oceny
-
-- Jakość kodu
-- Użyte narzędzia
-- Poprawność działania kodu
-
-## Podpowiedzi
-
-- możesz zainstalować dowolne bilbioteki potrzebne do realizacji zadania
-- jeżeli brakuje danych, możesz je wymyślić lub wygenerować
+```bash
+npm run test
+```
