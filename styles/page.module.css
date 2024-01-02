@@ -1,0 +1,46 @@
+.mainContainer,
+.loadingContainer,
+.errorContainer {
+  display: flex;
+  min-height: 100vh; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;
+  padding: 6rem; 
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem; 
+  padding-bottom: 2rem; 
+}
+
+.gridItem {
+  width: 100%;
+  max-width: 20rem; 
+  padding: 1rem; 
+  background-color: white;
+  border: 1px solid #e2e8f0; 
+  border-radius: 0.5rem; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1rem; 
+  line-height: 1.5; 
+}
+
+.dark .gridItem {
+  background-color: #2d3748;
+  border-color: #4a5568; 
+  color: white;
+}
+
+.linkMainPage {
+  display: flex;
+  place-items: center;
+  margin-top: 1.5rem;
+}
+
+
+
+
+ 
