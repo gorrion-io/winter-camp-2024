@@ -11,3 +11,11 @@ export type YamlCrewMember = {
   years_old: number;
   occupation: string;
 };
+
+export type JSONCrewMember = {
+  firstName: string;
+  lastName: string;
+  nationality: string;
+  age: number;
+  profession: string;
+};
