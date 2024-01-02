@@ -1,3 +1,4 @@
+import { getJSONData, getMembersData, getYamlData } from "@/lib/crew";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 /**
@@ -6,5 +7,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
  */
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.status(200).json([]);
+  const pageOffset = req.body;
+  console.log("pageOffset", pageOffset);
+  const members = getMembersData("crew");
+  res.status(200).json(members);
 }
