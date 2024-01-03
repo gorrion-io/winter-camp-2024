@@ -5,20 +5,15 @@ import { CrewMember } from "@/lib/definitions";
 import { validateMethod } from "@/api/utils/validateMethod";
 import { handleErrors } from "@/api/utils/handleErrors";
 import { BrowseDto } from "@/api/dto/BrowseDto";
-
 import { ValidationError } from "@/api/exceptions/ValidationError";
 import { BrowseQueryParams } from "@/api/queryParams/BrowseQueryParams";
-
-type PaginatedCrewList = {
-  collection: CrewMember[];
-  totalPages: number;
-};
+import { ActionResult } from "@/api/definitions";
 
 const ITEMS_PER_PAGE = 8;
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<PaginatedCrewList | { error: string }>
+  res: NextApiResponse<ActionResult<BrowseDto<CrewMember>>>
 ) {
   try {
     validateMethod(req, "GET");
@@ -37,7 +32,7 @@ export default async function handler(
     );
 
     // paginate
-    const paginatedCrewList = new BrowseDto(
+    const paginatedCrewList = new BrowseDto<CrewMember>(
       sortedCrewList,
       totalPages
     ).paginate(query.page, ITEMS_PER_PAGE);

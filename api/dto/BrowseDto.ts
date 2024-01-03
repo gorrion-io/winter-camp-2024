@@ -7,15 +7,12 @@ export class BrowseDto<T> {
     this.totalPages = totalPages;
   }
 
-  paginate(page: number, itemsPerPage: number) {
+  paginate(page: number, itemsPerPage: number): BrowseDto<T> {
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = page * itemsPerPage;
 
     const paginatedCollection = this.collection.slice(startIndex, endIndex);
 
-    return {
-      collection: paginatedCollection,
-      totalPages: this.totalPages,
-    };
+    return new BrowseDto<T>(paginatedCollection, this.totalPages);
   }
 }

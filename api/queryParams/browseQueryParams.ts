@@ -1,5 +1,5 @@
 import { ValidationError } from "@/api/exceptions/ValidationError";
-import { Query } from "@/lib/definitions";
+import { Query } from "@/api/definitions";
 
 export class BrowseQueryParams {
   page: number;

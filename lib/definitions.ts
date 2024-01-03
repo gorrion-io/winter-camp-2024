@@ -5,8 +5,6 @@ export type CrewMember = {
   profession: string;
 };
 
-export type Query = { [key: string]: string | string[] | undefined };
-
 export type CrewJson = {
   firstName: string;
   lastName: string;
