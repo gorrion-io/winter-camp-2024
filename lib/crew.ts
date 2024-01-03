@@ -7,7 +7,6 @@ import fs from "fs";
 import yaml from "js-yaml";
 import { CrewMember, JSONCrewMember, YamlCrewMember } from "./type";
 import { getPaginationData } from "./core/paginationLogic";
-import { MEMBER_PER_PAGE } from "./constant/pagination";
 
 export const getYamlData = (fileName: string) => {
   const yamlData = fs.readFileSync(fileName, "utf-8");
@@ -63,7 +62,5 @@ export const getMembersData = (fileName: string) => {
 
 export const compositionMembers = (fileName: string) => {
   const members = getMembersData(fileName);
-
-  return (pageOffset: number) =>
-    getPaginationData(MEMBER_PER_PAGE, pageOffset, members);
+  return (pageOffset: number) => getPaginationData(pageOffset, members);
 };

@@ -1,5 +1,6 @@
 import { sortMembersByName } from "../crew";
 import { CrewMember } from "../type";
+import { MEMBER_PER_PAGE } from "../constant/pagination";
 
 export const calculateTotalPage = (
   memberPerPage: number,
@@ -27,16 +28,15 @@ export const getMembersPerPage = (
 };
 
 export const getPaginationData = (
-  memberPerPage: number,
   pageOffset: number,
   members: CrewMember[]
 ) => {
   const newMembers = getMembersPerPage(
-    memberPerPage,
+    MEMBER_PER_PAGE,
     (pageOffset = 1),
     members
   );
-  const totalPage = calculateTotalPage(memberPerPage, members.length);
+  const totalPage = calculateTotalPage(MEMBER_PER_PAGE, members.length);
   const sortedMembers = sortMembersByName(newMembers);
 
   return {
