@@ -3,6 +3,7 @@
  * @description Use tanstack/react-query or swr to fetch data from the endpoint. Prepare pagination.
  */
 
+import { Pagination } from "@/components/molecules/pagination/pagination";
 import { useState } from "react";
 
 export default function Task() {
@@ -26,5 +27,10 @@ export default function Task() {
     }
   };
   console.log("members", members);
-  return <button onClick={() => getTeamMembers(page)}>Task</button>;
+  return (
+    <div className="flex flex-col min-h-screen place-content-center place-items-center p-24 bg-cashmere">
+      <button onClick={() => getTeamMembers(page)}>Task</button>;
+      <Pagination />
+    </div>
+  );
 }
