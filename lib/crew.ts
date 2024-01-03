@@ -88,14 +88,12 @@ export const combineCrewLists = async (
     yamlFilePath: string
   ): Promise<CrewMember[]> => {
     try {
-        console.log(jsonFilePath)
       // Ładujemy obie listy równolegle za pomocą Promise.all
       const [jsonCrewMembers, yamlCrewMembers] = await Promise.all([
         loadCrewMembers(jsonFilePath, jsonParser),
         loadCrewMembers(yamlFilePath, yamlParser),
       ]);
       const combinedCrewMembers = [...jsonCrewMembers, ...yamlCrewMembers];
-      console.log('in combineCrewLists', combinedCrewMembers);
       return combinedCrewMembers;
     } catch (error) {
       // Rzucamy wyjątek, aby wywołujący mógł odpowiednio zareagować
