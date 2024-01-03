@@ -24,18 +24,18 @@ export default async function handler(
     const query = browseQueryParams.validate(req.query);
     const crewList = mergeCrewData();
 
-    // Validation
+    // validation
     const totalPages = Math.ceil(crewList.length / ITEMS_PER_PAGE);
     if (query.page > totalPages) {
       throw new ValidationError("Page does not exist");
     }
 
-    // Sort crewList by fullName
+    // sort
     const sortedCrewList = crewList.sort((a, b) =>
       a.fullName.localeCompare(b.fullName)
     );
 
-    // Paginate
+    // paginate
     const paginatedCrewList = new BrowseDto(
       sortedCrewList,
       totalPages
