@@ -1,3 +1,4 @@
+import getCrew from "@/lib/crew";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 /**
@@ -5,6 +6,11 @@ import type { NextApiRequest, NextApiResponse } from "next";
  * @description The endpoint should return a pagination of 8 users per page. The endpoint should accept a query parameter "page" to return the corresponding page.
  */
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const crewList = await getCrew();
+  console.log(crewList);
   res.status(200).json([]);
 }
