@@ -1,4 +1,4 @@
-import { getJSONData, getMembersData, getYamlData } from "@/lib/crew";
+import { compositionMembers } from "@/lib/crew";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 /**
@@ -7,8 +7,10 @@ import type { NextApiRequest, NextApiResponse } from "next";
  */
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const pageOffset = req.body;
-  console.log("pageOffset", pageOffset);
-  const members = getMembersData("crew");
-  res.status(200).json(members);
+  const { page } = req.body;
+  const { sortedMembers, totalPage } = compositionMembers("crew")(page);
+  res.status(200).json({
+    sortedMembers,
+    totalPage,
+  });
 }

@@ -1,4 +1,4 @@
-type BaseMamberType = {
+type BaseMemberType = {
   nationality: string;
   age: number;
   profession: string;
@@ -6,7 +6,7 @@ type BaseMamberType = {
 
 export type CrewMember = {
   fullName: string;
-} & BaseMamberType;
+} & BaseMemberType;
 
 export type YamlCrewMember = {
   name: string;
@@ -18,4 +18,4 @@ export type YamlCrewMember = {
 export type JSONCrewMember = {
   firstName: string;
   lastName: string;
-} & BaseMamberType;
+} & BaseMemberType;

@@ -6,6 +6,8 @@
 import fs from "fs";
 import yaml from "js-yaml";
 import { CrewMember, JSONCrewMember, YamlCrewMember } from "./type";
+import { getPaginationData } from "./core/paginationLogic";
+import { MEMBER_PER_PAGE } from "./constant/pagination";
 
 export const getYamlData = (fileName: string) => {
   const yamlData = fs.readFileSync(fileName, "utf-8");
@@ -38,8 +40,15 @@ export const mapJSONDataType = (data: JSONCrewMember[]) => {
     };
   });
 };
+
 export const filteredMembersByYear = (members: CrewMember[]) => {
   return members.filter(({ age }) => age >= 30 && age <= 40);
+};
+
+export const sortMembersByName = (members: CrewMember[]) => {
+  return members.sort((a, b) => {
+    return a.fullName < b.fullName ? -1 : 1;
+  });
 };
 
 export const getMembersData = (fileName: string) => {
@@ -49,9 +58,12 @@ export const getMembersData = (fileName: string) => {
   const newMembersI = mapYamlDataType(membersI);
   const newMembersII = mapJSONDataType(membersII);
 
-  const filteredMembers = filteredMembersByYear([
-    ...newMembersI,
-    ...newMembersII,
-  ]);
-  return filteredMembers;
+  return filteredMembersByYear([...newMembersI, ...newMembersII]);
+};
+
+export const compositionMembers = (fileName: string) => {
+  const members = getMembersData(fileName);
+
+  return (pageOffset: number) =>
+    getPaginationData(MEMBER_PER_PAGE, pageOffset, members);
 };

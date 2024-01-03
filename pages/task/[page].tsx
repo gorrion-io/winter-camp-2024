@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function Task() {
   const [page, setPage] = useState<number>(1);
-  const [members, setMembers] = useState<[]>([]);
+  const [members, setMembers] = useState<any>(null);
 
   const getTeamMembers = async (page: number) => {
     try {
@@ -16,7 +16,9 @@ export default function Task() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(page),
+        body: JSON.stringify({
+          page,
+        }),
       });
       setMembers(await res.json());
     } catch (error) {
