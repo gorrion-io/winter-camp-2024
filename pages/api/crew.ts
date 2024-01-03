@@ -11,6 +11,5 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const crewList = await getCrew();
-  console.log(crewList);
-  res.status(200).json([]);
+  res.status(200).json(crewList);
 }
