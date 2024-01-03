@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { CrewMember } from "@/lib/definitions";
 import Link from "next/link";
+import MemberCard from "@/components/mui/MemberCard";
 
 const CrewList = () => {
   const [crewMembers, setCrewMembers] = useState<CrewMember[]>([]);
-  const [totalPages, setTotalPages] = useState<boolean>(false);
+  const [totalPages, setTotalPages] = useState<number>(1);
 
   const [error, setError] = useState(null);
 
@@ -30,32 +31,26 @@ const CrewList = () => {
     };
 
     fetchData();
-  }, [page]);
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  }, [page, router]);
 
   return (
     <div>
-      <h2>Crew Members</h2>
-      <ul>
+      <div className="w-11/12 mx-auto mt-5 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3 lg:gap-6">
         {crewMembers.map((member, index) => (
-          <li key={index}>
-            {member.fullName} {member.age}
-          </li>
+          <MemberCard crewMember={member} key={index} />
         ))}
-      </ul>
-
-      <Link href={`/task/${parseInt(page as string) + 1}`}>
-        Następna strona
-      </Link>
-
-      {page && page !== "1" && (
-        <Link href={`/task/${parseInt(page as string) - 1}`}>
-          Poprzednia strona
-        </Link>
-      )}
+      </div>
+      <div className="flex justify-center mt-6">
+        {Array.from({ length: totalPages }, (_, i) => (
+          <Link
+            key={i}
+            href={`/task/${i + 1}`}
+            className="mx-2 px-4 py-2 text-grey-50 text-xl"
+          >
+            {i + 1}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

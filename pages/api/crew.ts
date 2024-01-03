@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import { mergeCrewData } from "@/lib/crew";
-import { CrewMember, Query } from "@/lib/definitions";
+import { CrewMember } from "@/lib/definitions";
 import { ValidationError } from "@/Exceptions/validationError";
 import { browseQueryParams } from "@/api/queryParams/browseQueryParams";
 import { validateMethod } from "@/api/utils/validateMethod";
