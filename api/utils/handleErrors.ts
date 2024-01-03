@@ -1,5 +1,6 @@
-import { MethodNotAllowedError } from "@/Exceptions/methodNotAllowedError";
-import { ValidationError } from "@/Exceptions/validationError";
+import { MethodNotAllowedError } from "@/api/exceptions/MethodNotAllowedError";
+import { ValidationError } from "@/api/exceptions/ValidationError";
+
 import { NextApiResponse } from "next";
 
 export function handleErrors<T>(

@@ -2,11 +2,12 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { mergeCrewData } from "@/lib/crew";
 import { CrewMember } from "@/lib/definitions";
-import { ValidationError } from "@/Exceptions/validationError";
-import { browseQueryParams } from "@/api/queryParams/browseQueryParams";
 import { validateMethod } from "@/api/utils/validateMethod";
 import { handleErrors } from "@/api/utils/handleErrors";
 import { BrowseDto } from "@/api/dto/BrowseDto";
+
+import { ValidationError } from "@/api/exceptions/ValidationError";
+import { BrowseQueryParams } from "@/api/queryParams/BrowseQueryParams";
 
 type PaginatedCrewList = {
   collection: CrewMember[];
@@ -21,7 +22,7 @@ export default async function handler(
 ) {
   try {
     validateMethod(req, "GET");
-    const query = browseQueryParams.validate(req.query);
+    const query = BrowseQueryParams.validate(req.query);
     const crewList = mergeCrewData();
 
     // validation

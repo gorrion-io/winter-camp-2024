@@ -1,4 +1,4 @@
-import { MethodNotAllowedError } from "@/Exceptions/methodNotAllowedError";
+import { MethodNotAllowedError } from "@/api/exceptions/MethodNotAllowedError";
 import { NextApiRequest } from "next";
 
 export type AllowedMethods = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";

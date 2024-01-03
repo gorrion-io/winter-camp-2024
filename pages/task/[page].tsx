@@ -1,27 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
 import { CrewMember } from "@/lib/definitions";
 import Link from "next/link";
 import MemberCard from "@/components/mui/MemberCard";
 import useSWR from "swr";
-import { Skeleton } from "@mui/material";
-
-const fetcher = async (url: string) => {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error("Failed to fetch crew data");
-  }
-  const data = await response.json();
-  return data;
-};
+import { fetcher } from "@/lib/fetcher";
 
 export default function CrewList() {
   const [crewMembers, setCrewMembers] = useState<CrewMember[]>([]);
-  const [totalPages, setTotalPages] = useState<number>(1);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [totalPages, setTotalPages] = useState<number>(0);
 
   const router = useRouter();
-  const { page } = router.query;
+
+  const page = useMemo(
+    () => parseInt(router.query?.page?.toString() || "1"),
+    [router.query?.page]
+  );
 
   const {
     data: crewData,
@@ -30,10 +24,9 @@ export default function CrewList() {
   } = useSWR(`/api/crew?page=${page}`, fetcher);
 
   useEffect(() => {
-    if (crewData) {
-      setCrewMembers(crewData.collection || []);
-      setTotalPages(crewData.totalPages || 1);
-      setIsLoading(false);
+    if (crewData?.collection?.length > 0) {
+      setCrewMembers(crewData.collection);
+      setTotalPages(crewData.totalPages);
     }
   }, [crewData]);
 
@@ -44,7 +37,7 @@ export default function CrewList() {
     }
   }, [error, router]);
 
-  return isLoading ? (
+  return isValidating ? (
     <div className="w-screen h-screen flex justify-center">
       <p className="text-lg">Loading...</p>
     </div>
@@ -60,7 +53,9 @@ export default function CrewList() {
           <Link
             key={i}
             href={`/task/${i + 1}`}
-            className="mx-2 px-4 pt-2 pb-8 text-grey-50 text-xl"
+            className={`mx-2 px-4 pt-2 pb-8 text-xl ${
+              page === i + 1 ? "text-white" : "text-gray-500"
+            }`}
           >
             {i + 1}
           </Link>

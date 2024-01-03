@@ -1,9 +1,5 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { CrewMember } from "@/lib/definitions";
 
@@ -16,7 +12,7 @@ export default function MemberCard(props: MemberCardProps) {
   return (
     <>
       <div>
-        <Card variant="outlined" sx={{ "background-color": "#E5E4E2" }}>
+        <Card variant="outlined" sx={{ backgroundColor: "#E5E4E2" }}>
           <CardContent>
             <Typography
               sx={{ fontSize: 14 }}
