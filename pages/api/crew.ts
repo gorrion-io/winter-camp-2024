@@ -6,21 +6,12 @@ import { ValidationError } from "@/Exceptions/validationError";
 import { browseQueryParams } from "@/api/queryParams/browseQueryParams";
 import { validateMethod } from "@/api/utils/validateMethod";
 import { handleErrors } from "@/api/utils/handleErrors";
+import { BrowseDto } from "@/api/dto/BrowseDto";
 
 type PaginatedCrewList = {
-  paginatedCrewList: CrewMember[];
-  hasNextPage: boolean;
-};
-
-class BrowseDto<T> {
-  collection: T[];
+  collection: CrewMember[];
   totalPages: number;
-
-  constructor(collection: T[], totalPages: number) {
-    this.collection = collection;
-    this.totalPages = totalPages;
-  }
-}
+};
 
 const ITEMS_PER_PAGE = 8;
 
@@ -44,15 +35,13 @@ export default async function handler(
       a.fullName.localeCompare(b.fullName)
     );
 
-    const startIndex = (query.page - 1) * ITEMS_PER_PAGE;
-    const endIndex = query.page * ITEMS_PER_PAGE;
+    // Paginate
+    const paginatedCrewList = new BrowseDto(
+      sortedCrewList,
+      totalPages
+    ).paginate(query.page, ITEMS_PER_PAGE);
 
-    const paginatedCrewList = sortedCrewList.slice(startIndex, endIndex);
-
-    // Check if there is a next page
-    const hasNextPage = query.page < totalPages;
-
-    return res.status(200).json({ paginatedCrewList, hasNextPage });
+    return res.status(200).json(paginatedCrewList);
   } catch (error) {
     handleErrors(res, error);
   }

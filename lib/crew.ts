@@ -1,52 +1,66 @@
-import { CrewMember } from "./definitions";
+import { CrewJson, CrewMember, CrewYaml } from "./definitions";
 
-import crewJson from "../crew.json";
 import fs from "fs";
 import yaml from "js-yaml";
 
-function parseCrewJsonToList(): CrewMember[] {
+function parseCrewJsonToList(file: string): CrewMember[] {
   let crewMembers: CrewMember[] = [];
 
-  crewJson.forEach((member) => {
-    if (member.age < 30 || member.age > 40) return;
+  try {
+    const jsonFile = fs.readFileSync(file, "utf-8");
+    const crewJson: CrewJson[] = JSON.parse(jsonFile);
 
-    const fullName = member.firstName + " " + member.lastName;
-    const crewMember: CrewMember = {
-      fullName,
-      nationality: member.nationality,
-      age: member.age,
-      profession: member.profession,
-    };
-    crewMembers.push(crewMember);
-  });
+    crewJson.forEach((member: CrewJson) => {
+      if (member.age < 30 || member.age > 40) return;
+
+      const fullName = `${member.firstName}  ${member.lastName}`;
+      const crewMember: CrewMember = {
+        fullName,
+        nationality: member.nationality,
+        age: member.age,
+        profession: member.profession,
+      };
+      crewMembers.push(crewMember);
+    });
+  } catch (error) {
+    console.error("Error parsing JSON:", (error as Error).message);
+  }
 
   return crewMembers;
 }
 
-function parseCrewYamlToList(): CrewMember[] {
+function parseCrewYamlToList(file: string): CrewMember[] {
   let crewMembers: CrewMember[] = [];
 
-  const yamlFile = fs.readFileSync("crew.yaml", "utf-8");
-  const crewYaml: any = yaml.load(yamlFile);
+  try {
+    const yamlFile = fs.readFileSync(file, "utf-8");
+    const crewYaml: any = yaml.load(yamlFile);
 
-  crewYaml.forEach((member: any) => {
-    if (member.years_old < 30 || member.years_old > 40) return;
+    if (Array.isArray(crewYaml)) {
+      crewYaml.forEach((member: CrewYaml) => {
+        if (member.years_old < 30 || member.years_old > 40) return;
 
-    const crewMember: CrewMember = {
-      fullName: member.name,
-      nationality: member.nationality,
-      age: member.years_old,
-      profession: member.occupation,
-    };
-    crewMembers.push(crewMember);
-  });
+        const crewMember: CrewMember = {
+          fullName: member.name,
+          nationality: member.nationality,
+          age: member.years_old,
+          profession: member.occupation,
+        };
+        crewMembers.push(crewMember);
+      });
+    } else {
+      console.error("YAML file does not contain an array of CrewYaml");
+    }
+  } catch (error) {
+    console.error("Error parsing YAML:", (error as Error).message);
+  }
 
   return crewMembers;
 }
 
 export function mergeCrewData(): CrewMember[] {
-  const crewJsonList = parseCrewJsonToList();
-  const crewYamlList = parseCrewYamlToList();
+  const crewJsonList = parseCrewJsonToList("./crew.json");
+  const crewYamlList = parseCrewYamlToList("./crew.yaml");
 
   return crewJsonList.concat(crewYamlList);
 }

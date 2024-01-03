@@ -9,7 +9,7 @@ export class browseQueryParams {
 
   static validate(query: Query): browseQueryParams {
     const page = parseInt(query.page?.toString() ?? "1");
-    if (isNaN(page)) throw new ValidationError("Invalid page number");
+    // if (isNaN(page)) throw new ValidationError("Invalid page number");
     if (page < 1) throw new ValidationError("Invalid page number");
     return new browseQueryParams(page);
   }

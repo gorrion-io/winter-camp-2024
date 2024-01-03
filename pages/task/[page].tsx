@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const CrewList = () => {
   const [crewMembers, setCrewMembers] = useState<CrewMember[]>([]);
-  const [hasNextPage, setHasNextPage] = useState<boolean>(false);
+  const [totalPages, setTotalPages] = useState<boolean>(false);
 
   const [error, setError] = useState(null);
 
@@ -20,15 +20,17 @@ const CrewList = () => {
           throw new Error("Failed to fetch crew data");
         }
         const data = await response.json();
-        setCrewMembers(data["paginatedCrewList"]);
-        setHasNextPage(data["hasNextPage"]);
+        setCrewMembers(data["collection"]);
+        setTotalPages(data["totalPages"]);
       } catch (error: any) {
         setError(error.message);
+        router.replace("/");
+        router.reload();
       }
     };
 
     fetchData();
-  }, [crewMembers, page]);
+  }, [page]);
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -44,11 +46,10 @@ const CrewList = () => {
           </li>
         ))}
       </ul>
-      {hasNextPage && (
-        <Link href={`/task/${parseInt(page as string) + 1}`}>
-          Następna strona
-        </Link>
-      )}
+
+      <Link href={`/task/${parseInt(page as string) + 1}`}>
+        Następna strona
+      </Link>
 
       {page && page !== "1" && (
         <Link href={`/task/${parseInt(page as string) - 1}`}>
