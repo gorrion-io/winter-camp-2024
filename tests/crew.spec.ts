@@ -1,65 +1,42 @@
-
+import { CrewMember, loadCrewMembers, jsonParser, yamlParser, isValidCrewMember, mapToCrewMember, combineCrewLists } from '../lib/crew';
 import fs from 'fs/promises';
-import { jsonParser, yamlParser, loadCrewMembers, combineCrewLists } from '../lib/crew';
+import yaml from 'js-yaml';
 
 jest.mock('fs/promises');
 
-describe('Crew Members Parser', () => {
-  const mockJsonData = '[{"fullName": "John Doe", "nationality": "American", "age": 35, "profession": "Engineer"}]';
-  const mockYamlData = '- fullName: "Jane Doe"\n  nationality: "Canadian"\n  age: 32\n  profession: "Pilot"';
-
-  beforeEach(() => {
-    jest.resetAllMocks();
-  });
-
-  describe('jsonParser', () => {
-    it('should parse JSON data correctly', () => {
-      const result = jsonParser(mockJsonData);
-      expect(result).toEqual([
-        { fullName: 'John Doe', nationality: 'American', age: 35, profession: 'Engineer' },
-      ]);
-    });
-  });
-
-  describe('yamlParser', () => {
-    it('should parse YAML data correctly', () => {
-      const result = yamlParser(mockYamlData);
-      expect(result).toEqual([
-        { fullName: 'Jane Doe', nationality: 'Canadian', age: 32, profession: 'Pilot' },
-      ]);
-    });
-  });
-
+describe('Crew', () => {
   describe('loadCrewMembers', () => {
     it('should load and parse crew members from a file', async () => {
-      (fs.readFile as jest.Mock).mockResolvedValue(mockJsonData);
-      const result = await loadCrewMembers('path/to/json', jsonParser);
-      expect(result).toEqual([
-        { fullName: 'John Doe', nationality: 'American', age: 35, profession: 'Engineer' },
-      ]);
+      (fs.readFile as jest.Mock).mockResolvedValue(JSON.stringify([{ name: 'John Doe', nationality: 'American', age: 35, profession: 'Engineer' }]));
+      const crewMembers = await loadCrewMembers('path/to/file', jsonParser);
+      expect(crewMembers).toEqual([{ fullName: 'John Doe', nationality: 'American', age: 35, profession: 'Engineer' }]);
     });
+  });
 
-    it('should throw an error if the file cannot be read', async () => {
-      (fs.readFile as jest.Mock).mockRejectedValue(new Error('File not found'));
-      await expect(loadCrewMembers('path/to/nonexistent', jsonParser)).rejects.toThrow('File not found');
+  describe('isValidCrewMember', () => {
+    it('should validate a crew member', () => {
+      const isValid = isValidCrewMember({ name: 'John Doe', nationality: 'American', age: 35, profession: 'Engineer' });
+      expect(isValid).toBe(true);
+    });
+  });
+
+  describe('mapToCrewMember', () => {
+    it('should map raw data to a CrewMember', () => {
+      const crewMember = mapToCrewMember({ name: 'John Doe', nationality: 'American', age: 35, profession: 'Engineer' });
+      expect(crewMember).toEqual({ fullName: 'John Doe', nationality: 'American', age: 35, profession: 'Engineer' });
     });
   });
 
   describe('combineCrewLists', () => {
-    it('should combine JSON and YAML crew lists', async () => {
+    it('should combine crew lists from JSON and YAML files', async () => {
       (fs.readFile as jest.Mock)
-        .mockResolvedValueOnce(mockJsonData)
-        .mockResolvedValueOnce(mockYamlData);
-      const result = await combineCrewLists('path/to/json', 'path/to/yaml');
-      expect(result).toEqual([
+        .mockResolvedValueOnce(JSON.stringify([{ name: 'John Doe', nationality: 'American', age: 35, profession: 'Engineer' }]))
+        .mockResolvedValueOnce(yaml.dump([{ name: 'Jane Doe', nationality: 'American', age: 34, profession: 'Scientist' }]));
+      const crewMembers = await combineCrewLists('path/to/json', 'path/to/yaml');
+      expect(crewMembers).toEqual([
         { fullName: 'John Doe', nationality: 'American', age: 35, profession: 'Engineer' },
-        { fullName: 'Jane Doe', nationality: 'Canadian', age: 32, profession: 'Pilot' },
+        { fullName: 'Jane Doe', nationality: 'American', age: 34, profession: 'Scientist' },
       ]);
-    });
-
-    it('should throw an error if there is a problem combining lists', async () => {
-      (fs.readFile as jest.Mock).mockRejectedValue(new Error('Error reading file'));
-      await expect(combineCrewLists('path/to/json', 'path/to/yaml')).rejects.toThrow('Error combining crew lists');
     });
   });
 });

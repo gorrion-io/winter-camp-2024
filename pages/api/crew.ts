@@ -1,6 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import path from 'path';
 import { CrewMember, combineCrewLists } from '../../lib/crew';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 export type Data = {
   crew: CrewMember[];
@@ -18,11 +18,9 @@ export default async function handler(
   res: NextApiResponse<Data | ErrorResponse>
 ) {
   try {
-    // Ustawienie ścieżek do plików JSON i YAML
     const jsonFilePath = path.join(process.cwd(), 'data', 'crew.json');
     const yamlFilePath = path.join(process.cwd(), 'data', 'crew.yaml');
 
-    // Walidacja parametru 'page'
     const pageParam = req.query.page;
     let page: number;
 
@@ -33,21 +31,16 @@ export default async function handler(
         return;
       }
     } else {
-      page = 1; // Domyślna wartość, jeśli parametr 'page' nie jest dostarczony
+      page = 1;
     }
 
-    // Łączymy listy członków załogi
     let crewMembers = await combineCrewLists(jsonFilePath, yamlFilePath);
-    // Sortujemy alfabetycznie po imieniu
     crewMembers.sort((a, b) => a.fullName.localeCompare(b.fullName));
 
-    // Paginacja
     const pageSize = 8;
     const totalCrewMembers = crewMembers.length;
-    console.log(totalCrewMembers, 'total crew members');
     const totalPages = Math.ceil(totalCrewMembers / pageSize);
 
-    // Sprawdzamy, czy żądana strona nie przekracza całkowitej liczby stron
     if (page > totalPages) {
       res.status(200).json({
         crew: [],
@@ -61,17 +54,14 @@ export default async function handler(
     const endIndex = startIndex + pageSize;
     const paginatedCrewMembers = crewMembers.slice(startIndex, endIndex);
 
-    // Zwracamy odpowiedź
     res.status(200).json({
       crew: paginatedCrewMembers,
       page: page,
       totalPages: totalPages,
     });
   } catch (error) {
-    // Logowanie błędów na serwerze
     console.error('An error occurred on the crew API:', error);
 
-    // Zwracamy bardziej szczegółowe informacje o błędzie
     res.status(500).json({
       error: 'Internal Server Error',
       message: 'An unexpected error occurred. Please try again later.',

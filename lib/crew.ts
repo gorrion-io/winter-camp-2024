@@ -1,6 +1,5 @@
 import fs from 'fs/promises';
 import yaml from 'js-yaml';
-import 'reflect-metadata';
 
 export type CrewMember = {
   fullName: string;
@@ -56,20 +55,20 @@ export const isValidCrewMember = (object: RawCrewMemberData): boolean => {
     const profession = object.profession ?? object.occupation;
   
     return (
-      fullName.length > 0 && // Sprawdzamy, czy fullName nie jest pusty
+      fullName.length > 0 &&
       typeof object.nationality === 'string' &&
-      object.nationality.length > 0 && // Sprawdzamy, czy nationality nie jest pusty
+      object.nationality.length > 0 &&
       typeof age === 'number' &&
       age >= 30 && age <= 40 &&
       typeof profession === 'string' &&
-      profession.length > 0 // Sprawdzamy, czy profession nie jest pusty
+      profession.length > 0
     );
   };
 
 export const mapToCrewMember = (object: RawCrewMemberData): CrewMember => {
   const fullName = object.name ?? `${object.firstName ?? ''} ${object.lastName ?? ''}`.trim();
-  const age = object.age ?? object.years_old ?? 0; // Default to 0 if both are undefined
-  const profession = object.profession ?? object.occupation ?? ''; // Default to empty string if both are undefined
+  const age = object.age ?? object.years_old ?? 0;
+  const profession = object.profession ?? object.occupation ?? '';
 
   if (!fullName || !age || !profession) {
     throw new Error('Invalid crew member data');
@@ -77,7 +76,7 @@ export const mapToCrewMember = (object: RawCrewMemberData): CrewMember => {
 
   return {
     fullName,
-    nationality: object.nationality ?? '', // Default to empty string if undefined
+    nationality: object.nationality ?? '',
     age,
     profession,
   };
@@ -88,7 +87,6 @@ export const combineCrewLists = async (
     yamlFilePath: string
   ): Promise<CrewMember[]> => {
     try {
-      // Ładujemy obie listy równolegle za pomocą Promise.all
       const [jsonCrewMembers, yamlCrewMembers] = await Promise.all([
         loadCrewMembers(jsonFilePath, jsonParser),
         loadCrewMembers(yamlFilePath, yamlParser),
@@ -96,7 +94,6 @@ export const combineCrewLists = async (
       const combinedCrewMembers = [...jsonCrewMembers, ...yamlCrewMembers];
       return combinedCrewMembers;
     } catch (error) {
-      // Rzucamy wyjątek, aby wywołujący mógł odpowiednio zareagować
       throw new Error(`Error combining crew lists: ${error}`);
     }
-  };
+};
