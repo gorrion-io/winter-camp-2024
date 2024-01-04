@@ -3,40 +3,15 @@ import {
   BasicTypographyProps,
   TypographyProps,
 } from "../../../types/typography";
-import { ColorVariants } from "../../../constant/styles/colors";
-import {
-  FontSize,
-  FontStyle,
-  TextPosition,
-} from "../../../constant/styles/typography";
-import { SpaceVariants } from "../../../constant/styles/common";
 
-const DynamicTypography = ({
+import { getTypographyDynamicProps } from "../../../utils";
+
+export const DynamicTypography = ({
   tag = "p",
   children,
   ...props
 }: BasicTypographyProps) => {
   return createElement(tag, props, children);
-};
-
-const getTypographyDynamicProps = ({
-  textColor,
-  textSize,
-  position = "center",
-  fontFamily = "sans",
-  textSpace = "default",
-}: TypographyProps) => {
-  const dynamiClassName = [
-    ColorVariants[textColor].text,
-    FontSize[textSize],
-    FontStyle[fontFamily],
-    TextPosition[position],
-    SpaceVariants[textSpace],
-  ]
-    .filter((item) => !!item)
-    .join(" ");
-
-  return `${dynamiClassName}`;
 };
 
 export const Typography = ({
@@ -48,7 +23,7 @@ export const Typography = ({
     textColor,
     textSize,
     position,
-    className,
+    className = "",
     textSpace = "default",
     fontFamily = "serif",
   } = props;

@@ -15,7 +15,11 @@ export default function Home() {
         </h1>
       </div>
       <div className="flex place-items-center mt-12">
-        <Link href="/task/1">Go to task</Link>
+        <Link href="/task/1" passHref>
+          <Button size="large" bgColor="blue" space="2xl" position="center">
+            Go to Task
+          </Button>
+        </Link>
       </div>
     </main>
   );

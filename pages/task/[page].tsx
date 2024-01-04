@@ -32,19 +32,7 @@ export default function Task() {
   console.log("members", members);
   return (
     <div className="flex flex-col min-h-screen place-content-center place-items-center p-24 bg-ecrue">
-      <Button size="large" bgColor="blue" space="2xl" position="center">
-        Get Team Member
-      </Button>
       <Pagination pageAmount={8} />
-      <Typography
-        tag="p"
-        textColor="blue"
-        fontFamily="serif"
-        textSize="xl"
-        position="left"
-      >
-        Elegancko
-      </Typography>
     </div>
   );
 }

@@ -31,6 +31,5 @@ export const ColorVariants: ColorVariantsType = {
   },
   transparent: {
     bg: "bg-transparent text-black border-[1px] border-black",
-    text: "",
   },
 };
