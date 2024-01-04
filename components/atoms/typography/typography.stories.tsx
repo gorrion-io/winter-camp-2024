@@ -3,7 +3,7 @@ import { Typography } from "./typography";
 import {
   BasicTypographyProps,
   TypographyProps,
-} from "../../../types/styles/typography";
+} from "../../../types/typography";
 export default {
   title: "Atoms/Typography",
   component: Typography,

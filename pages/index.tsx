@@ -1,3 +1,4 @@
+import { Button } from "@/components/atoms/button/button";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 

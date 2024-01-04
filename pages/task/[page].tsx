@@ -3,7 +3,10 @@
  * @description Use tanstack/react-query or swr to fetch data from the endpoint. Prepare pagination.
  */
 
+import { Button } from "@/components/atoms/button/button";
+import { Typography } from "@/components/atoms/typography/typography";
 import { Pagination } from "@/components/molecules/pagination/pagination";
+
 import { useState } from "react";
 
 export default function Task() {
@@ -28,9 +31,20 @@ export default function Task() {
   };
   console.log("members", members);
   return (
-    <div className="flex flex-col min-h-screen place-content-center place-items-center p-24 bg-cashmere">
-      <button onClick={() => getTeamMembers(page)}>Task</button>;
-      <Pagination />
+    <div className="flex flex-col min-h-screen place-content-center place-items-center p-24 bg-ecrue">
+      <Button size="large" bgColor="blue" space="2xl" position="center">
+        Get Team Member
+      </Button>
+      <Pagination pageAmount={8} />
+      <Typography
+        tag="p"
+        textColor="blue"
+        fontFamily="serif"
+        textSize="xl"
+        position="left"
+      >
+        Elegancko
+      </Typography>
     </div>
   );
 }

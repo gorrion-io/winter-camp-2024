@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
-import { TextBGColorVariants } from "../../constant/styles/colors";
+import { ColorVariants } from "../constant/styles/colors";
 import {
   FontSize,
   FontStyle,
   TextPosition,
-} from "../../constant/styles/typography";
-import { Space } from "../../constant/styles/common";
+} from "../constant/styles/typography";
+import { SpaceVariants } from "../constant/styles/common";
 
 export type TagVariants =
   | "h1"
@@ -18,10 +18,10 @@ export type TagVariants =
   | "span"
   | "cite";
 
-export type TextColorVariants = keyof typeof TextBGColorVariants;
+export type TextColorVariants = keyof typeof ColorVariants;
 export type TextSizeVariants = keyof typeof FontSize;
 export type TextPosition = keyof typeof TextPosition;
-export type TextSpace = keyof typeof Space;
+export type TextSpace = keyof typeof SpaceVariants;
 export type FontFamilyVariants = keyof typeof FontStyle;
 
 export type BasicTypographyProps = {

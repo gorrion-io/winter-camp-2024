@@ -2,14 +2,14 @@ import { createElement } from "react";
 import {
   BasicTypographyProps,
   TypographyProps,
-} from "../../../types/styles/typography";
-import { TextBGColorVariants } from "../../../constant/styles/colors";
+} from "../../../types/typography";
+import { ColorVariants } from "../../../constant/styles/colors";
 import {
   FontSize,
   FontStyle,
   TextPosition,
 } from "../../../constant/styles/typography";
-import { Space } from "../../../constant/styles/common";
+import { SpaceVariants } from "../../../constant/styles/common";
 
 const DynamicTypography = ({
   tag = "p",
@@ -27,11 +27,11 @@ const getTypographyDynamicProps = ({
   textSpace = "default",
 }: TypographyProps) => {
   const dynamiClassName = [
-    TextBGColorVariants[textColor],
+    ColorVariants[textColor].text,
     FontSize[textSize],
     FontStyle[fontFamily],
     TextPosition[position],
-    Space[textSpace],
+    SpaceVariants[textSpace],
   ]
     .filter((item) => !!item)
     .join(" ");
