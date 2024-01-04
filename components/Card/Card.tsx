@@ -1,14 +1,13 @@
 import astronautPng from "@/assets/images/astronautIcon.png"
 import Image from "next/image";
 interface CardProps {
-    firstName: string;
-    lastName: string;
+    fullName: string;
     nationality: string;
     age: number;
     profession: string;
     image:string
 }
-const Card: React.FC<CardProps>  = ({ firstName, lastName, nationality, age, profession, image }) => {
+const Card: React.FC<CardProps>  = ({ fullName, nationality, age, profession, image }) => {
     return (
         <div className="relative max-w-md h-56 mx-auto bg-gradient-card rounded-md  shadow-md my-6 text-center after:bg-gradient-card-after after:absolute after:-top-0.5 after:bg-blue-400 after:-left-0.5 after:-right-0.5 after:-bottom-0.5 after:-z-10 after:rounded-md ">
             <div className={"relative w-250px pt-3 ml-2"}>
@@ -18,7 +17,7 @@ const Card: React.FC<CardProps>  = ({ firstName, lastName, nationality, age, pro
 
             <div className="px-6 py-4 pl-52 pt-10">
                 <div className="font-bold text-xl mb-2 text-w">
-                    {firstName} {lastName}
+                    {fullName}
                 </div>
                 <div className="text-gray-400 font-medium text-base">
                     <p>Nationality: {nationality}</p>

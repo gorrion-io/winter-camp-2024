@@ -3,11 +3,9 @@ import { useRouter } from "next/router";
 import Card from "@/components/Card/Card";
 import astronautPng from "@/assets/images/astronaut.png"
 import Image from "next/image";
-import {useEffect} from "react";
 
 type AstronautParams = {
-  firstName: string;
-  lastName: string;
+  fullName: string;
   nationality: string;
   age: number;
   profession: string;
@@ -63,7 +61,7 @@ export default function Task() {
 
           <div className=" flex-col text-center rounded-md flex items-center h-16 w-36 sm:w-63 bg-19213C justify-center relative overflow-hidden">
           <div className="font-bold text-2xl">Astronauts<Image src={astronautPng} alt={"astronaut"} className={"hidden sm:block rounded-md absolute top-0 left-0 h-20 w-auto"}></Image></div>
-          {/*I hold both commercial and copyright rights to the attached photograph*/}
+          {/*I hold both commercial and copyright rights to this photograph*/}
           </div>
           <button
               className="hover:bg-blue-950 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline bg-19213C"
@@ -80,8 +78,7 @@ export default function Task() {
                   <Card
                       key={index}
                       image={cats && cats[index] ? cats[index].url : "https://cdn2.thecatapi.com/images/a7i.jpg"}
-                      firstName={astronaut.firstName}
-                      lastName={astronaut.lastName}
+                      fullName={astronaut.fullName}
                       nationality={astronaut.nationality}
                       age={astronaut.age}
                       profession={astronaut.profession}
