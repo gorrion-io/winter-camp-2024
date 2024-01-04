@@ -59,8 +59,8 @@ function parseCrewYamlToList(file: string): CrewMember[] {
 }
 
 export function mergeCrewData(): CrewMember[] {
-  const crewJsonList = parseCrewJsonToList("./crew.json");
-  const crewYamlList = parseCrewYamlToList("./crew.yaml");
+  const crewJsonList = parseCrewJsonToList("crew.json");
+  const crewYamlList = parseCrewYamlToList("crew.yaml");
 
   return crewJsonList.concat(crewYamlList);
 }
