@@ -8,9 +8,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { page } = req.body;
-  const { sortedMembers, totalPage } = compositionMembers("crew")(page);
+  const { members, totalPage } = compositionMembers("crew")(page);
   res.status(200).json({
-    sortedMembers,
+    members,
     totalPage,
   });
 }

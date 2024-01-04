@@ -40,7 +40,7 @@ export const getPaginationData = (
   const sortedMembers = sortMembersByName(newMembers);
 
   return {
-    sortedMembers,
+    members: sortedMembers,
     totalPage,
   };
 };

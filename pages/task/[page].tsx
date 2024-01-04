@@ -3,15 +3,17 @@
  * @description Use tanstack/react-query or swr to fetch data from the endpoint. Prepare pagination.
  */
 
-import { Button } from "@/components/atoms/button/button";
-import { Typography } from "@/components/atoms/typography/typography";
+import { Card } from "@/components/molecules/Card/card";
 import { Pagination } from "@/components/molecules/pagination/pagination";
+import { CrewMember } from "@/lib/type";
 
 import { useState } from "react";
 
 export default function Task() {
-  const [page, setPage] = useState<number>(1);
-  const [members, setMembers] = useState<any>(null);
+  const [members, setMembers] = useState<{
+    members: CrewMember[];
+    totalPage: number;
+  }>({ members: [], totalPage: 4 });
 
   const getTeamMembers = async (page: number) => {
     try {
@@ -31,8 +33,13 @@ export default function Task() {
   };
   console.log("members", members);
   return (
-    <div className="flex flex-col min-h-screen place-content-center place-items-center p-24 bg-ecrue">
-      <Pagination pageAmount={8} />
+    <div className="flex flex-col min-h-screen place-content-center border-2 border-red-500 place-items-center p-24 bg-ecrue">
+      {members.members?.length
+        ? members.members.map((member, i) => {
+            return <Card key={i} id={i} member={member} />;
+          })
+        : ""}
+      <Pagination pageAmount={members.totalPage} setPage={getTeamMembers} />
     </div>
   );
 }

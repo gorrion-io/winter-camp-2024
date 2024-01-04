@@ -25,7 +25,7 @@ export const Typography = ({
     position,
     className = "",
     textSpace = "default",
-    fontFamily = "serif",
+    fontFamily = "mono",
   } = props;
 
   const dynamiClassName = getTypographyDynamicProps({

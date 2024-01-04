@@ -25,11 +25,11 @@ export const Button = memo<ButtonProps>(
     onClick,
     space = "default",
     position = "center",
-    className,
+    className = "",
   }) => {
     return (
       <button
-        onClick={() => onClick}
+        onClick={onClick}
         className={` ${getButtonDynamicProps({
           bgColor,
           size,
