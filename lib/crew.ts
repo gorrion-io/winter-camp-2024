@@ -7,7 +7,7 @@ function parseCrewJsonToList(file: string): CrewMember[] {
   let crewMembers: CrewMember[] = [];
 
   try {
-    const jsonFile = fs.readFileSync(file, "utf-8");
+    const jsonFile = fs.readFileSync(process.cwd() + file, "utf-8");
     const crewJson: CrewJson[] = JSON.parse(jsonFile);
 
     crewJson.forEach((member: CrewJson) => {
@@ -33,7 +33,7 @@ function parseCrewYamlToList(file: string): CrewMember[] {
   let crewMembers: CrewMember[] = [];
 
   try {
-    const yamlFile = fs.readFileSync(file, "utf-8");
+    const yamlFile = fs.readFileSync(process.cwd() + file, "utf-8");
     const crewYaml: any = yaml.load(yamlFile);
 
     if (Array.isArray(crewYaml)) {
@@ -59,8 +59,8 @@ function parseCrewYamlToList(file: string): CrewMember[] {
 }
 
 export function mergeCrewData(): CrewMember[] {
-  const crewJsonList = parseCrewJsonToList("crew.json");
-  const crewYamlList = parseCrewYamlToList("crew.yaml");
+  const crewJsonList = parseCrewJsonToList("/crew.json");
+  const crewYamlList = parseCrewYamlToList("/crew.yaml");
 
   return crewJsonList.concat(crewYamlList);
 }
