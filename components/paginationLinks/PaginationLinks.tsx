@@ -13,24 +13,23 @@ const createDots = () => {
   );
 };
 
-export const PaginationLinks = ({ page, totalPages }: PaginationLinksProps) => {
-  //helper function
-  const createPageLink = (pageNumber: number) => (
-    <Link
-      key={pageNumber}
-      href={`/task/${pageNumber}`}
-      className={`mx-4 px-4 pt-2 pb-8 text-xl ${
-        page === pageNumber ? "text-white" : "text-gray-500"
-      }`}
-    >
-      {pageNumber}
-    </Link>
-  );
+const createPageLink = (pageNumber: number, page: number) => (
+  <Link
+    key={pageNumber}
+    href={`/task/${pageNumber}`}
+    className={`mx-4 px-4 pt-2 pb-8 text-xl ${
+      page === pageNumber ? "text-white" : "text-gray-500"
+    }`}
+  >
+    {pageNumber}
+  </Link>
+);
 
+export const PaginationLinks = ({ page, totalPages }: PaginationLinksProps) => {
   const links = [];
 
   // the first page
-  links.push(createPageLink(1));
+  links.push(createPageLink(1, page));
 
   if (totalPages >= 3) {
     if (page > 3) {
@@ -41,7 +40,7 @@ export const PaginationLinks = ({ page, totalPages }: PaginationLinksProps) => {
       i <= Math.min(totalPages - 1, page + 1);
       i++
     ) {
-      links.push(createPageLink(i));
+      links.push(createPageLink(i, page));
     }
 
     if (page < totalPages - 2) {
@@ -50,7 +49,7 @@ export const PaginationLinks = ({ page, totalPages }: PaginationLinksProps) => {
   }
 
   // the last page
-  if (totalPages > 1) links.push(createPageLink(totalPages));
+  if (totalPages > 1) links.push(createPageLink(totalPages, page));
 
   return links;
 };

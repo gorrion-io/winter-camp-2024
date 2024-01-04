@@ -5,9 +5,10 @@ export type AllowedMethods = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 export function validateMethod(
   req: NextApiRequest,
-  allowedMethod: AllowedMethods
+  AllowedMethods: AllowedMethods[]
 ) {
-  if (allowedMethod !== req.method) {
+  const method = req.method?.toUpperCase() as AllowedMethods;
+  if (!AllowedMethods.includes(method)) {
     throw new MethodNotAllowedError();
   }
 }

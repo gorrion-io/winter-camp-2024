@@ -1,13 +1,16 @@
 import { CrewJson, CrewMember, CrewYaml } from "./definitions";
 
 import fs from "fs";
+import path from "path";
+
 import yaml from "js-yaml";
 
-function parseCrewJsonToList(file: string): CrewMember[] {
+function parseCrewJsonToList(files: string[]): CrewMember[] {
   let crewMembers: CrewMember[] = [];
 
   try {
-    const jsonFile = fs.readFileSync(process.cwd() + file, "utf-8");
+    const filePath = path.resolve(process.cwd(), ...files);
+    const jsonFile = fs.readFileSync(filePath, "utf-8");
     const crewJson: CrewJson[] = JSON.parse(jsonFile);
 
     crewJson.forEach((member: CrewJson) => {
@@ -29,11 +32,13 @@ function parseCrewJsonToList(file: string): CrewMember[] {
   return crewMembers;
 }
 
-function parseCrewYamlToList(file: string): CrewMember[] {
+function parseCrewYamlToList(files: string[]): CrewMember[] {
   let crewMembers: CrewMember[] = [];
 
   try {
-    const yamlFile = fs.readFileSync(process.cwd() + file, "utf-8");
+    const filePath = path.resolve(process.cwd(), ...files);
+
+    const yamlFile = fs.readFileSync(filePath, "utf-8");
     const crewYaml: any = yaml.load(yamlFile);
 
     if (Array.isArray(crewYaml)) {
@@ -59,8 +64,8 @@ function parseCrewYamlToList(file: string): CrewMember[] {
 }
 
 export function mergeCrewData(): CrewMember[] {
-  const crewJsonList = parseCrewJsonToList("/crew.json");
-  const crewYamlList = parseCrewYamlToList("/crew.yaml");
+  const crewJsonList = parseCrewJsonToList(["api", "static", "crew.json"]);
+  const crewYamlList = parseCrewYamlToList(["api", "static", "crew.yaml"]);
 
   return crewJsonList.concat(crewYamlList);
 }

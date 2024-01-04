@@ -16,7 +16,7 @@ export default async function handler(
   res: NextApiResponse<ActionResult<BrowseDto<CrewMember>>>
 ) {
   try {
-    validateMethod(req, "GET");
+    validateMethod(req, ["GET"]);
     const query = BrowseQueryParams.validate(req.query);
     const crewList = mergeCrewData();
 
