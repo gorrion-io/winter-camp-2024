@@ -14,7 +14,7 @@ Załoga stacji kosmicznej przygotowuje się do długotrwałego pobytu w kosmosie
 
 Warunki zaliczenia zadania:
 
-1. Typ pojedyńczego członka zespołu powinien wyglądać w następujący sposób:
+1. Typ pojedynczego członka zespołu powinien wyglądać w następujący sposób:
 
 ```ts
 type CrewMember = {
