@@ -37,6 +37,30 @@ export default function CrewList() {
     }
   }, [error, router]);
 
+  const renderPaginationLinks = () => {
+    const links = [];
+
+    for (
+      let i = Math.max(1, page - 1);
+      i <= Math.min(totalPages, page + 1);
+      i++
+    ) {
+      links.push(
+        <Link
+          key={i}
+          href={`/task/${i}`}
+          className={`mx-2 px-4 pt-2 pb-8 text-xl ${
+            page === i ? "text-white" : "text-gray-500"
+          }`}
+        >
+          {i}
+        </Link>
+      );
+    }
+
+    return links;
+  };
+
   return isValidating ? (
     <div className="w-screen h-screen flex justify-center">
       <p className="text-lg animate-pulse">Loading...</p>
@@ -48,19 +72,7 @@ export default function CrewList() {
           <MemberCard crewMember={member} key={index} />
         ))}
       </div>
-      <div className="flex justify-center mt-6">
-        {Array.from({ length: totalPages }, (_, i) => (
-          <Link
-            key={i}
-            href={`/task/${i + 1}`}
-            className={`mx-2 px-4 pt-2 pb-8 text-xl ${
-              page === i + 1 ? "text-white" : "text-gray-500"
-            }`}
-          >
-            {i + 1}
-          </Link>
-        ))}
-      </div>
+      <div className="flex justify-center mt-6">{renderPaginationLinks()}</div>
     </div>
   );
 }
