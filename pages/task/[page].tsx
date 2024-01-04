@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import React from "react";
-import Link from "next/link";
 import { Data, ErrorResponse } from "../api/crew";
 import CrewMemberCard from "../components/CrewMemberCard";
 import Pagination from "../components/Pagination";
@@ -19,9 +18,6 @@ const CrewPage = () => {
   const { page } = router.query;
 
   const currentPage = parseInt(page as string, 10);
-  console.log("currentPage after setting: ", currentPage);
-
-  console.log("currentPage before useQuery: ", currentPage);
 
   const {
     data,
@@ -33,7 +29,6 @@ const CrewPage = () => {
     queryFn: () => fetchCrew(currentPage),
     enabled: currentPage > 0,
   });
-  console.log("currentPage after useQuery: ", currentPage);
 
   const isData = (data: Data | ErrorResponse | undefined): data is Data => {
     return data !== undefined && "crew" in data;
