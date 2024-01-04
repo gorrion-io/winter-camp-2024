@@ -21,6 +21,10 @@ To handle YAML files, I enlisted the help of `yaml-js`, making the data manipula
 
 For checking the pagination, I kept it simple with the `jest` library, ensuring our cosmic journey through pages is smooth and trouble-free.
 
+## Visit the cosmos
+
+[Visit the cosmos on Vercel](https://winter-camp-2024.vercel.app/)
+
 ## Cosmic capture
 
 ![image](https://github.com/kacaleksandra/winter-camp-2024/assets/49205215/289813fd-30ce-44b2-8767-7fc36e898c8a)
