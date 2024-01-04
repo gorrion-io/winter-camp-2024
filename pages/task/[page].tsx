@@ -6,6 +6,7 @@
 import { Card } from "@/components/molecules/Card/card";
 import { Pagination } from "@/components/molecules/pagination/pagination";
 import { CrewMember } from "@/lib/type";
+import { GridTemplate } from "@/templates/GridTemplate";
 
 import { useState } from "react";
 
@@ -32,12 +33,14 @@ export default function Task() {
     }
   };
   return (
-    <div className="flex flex-col min-h-screen place-content-center border-2 border-red-500 place-items-center p-24 bg-ecrue">
-      {apiData.members?.length
-        ? apiData.members.map((member, i) => {
-            return <Card key={i} id={i} member={member} />;
-          })
-        : ""}
+    <div className="flex flex-col w-full min-h-screen place-content-center place-items-center p-4 md:p-24 bg-ecrue">
+      <GridTemplate>
+        {apiData.members?.length
+          ? apiData.members.map((member, i) => {
+              return <Card key={i} id={i} member={member} />;
+            })
+          : ""}
+      </GridTemplate>
       <Pagination pageAmount={apiData.totalPage} setPage={getTeamMembers} />
     </div>
   );

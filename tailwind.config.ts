@@ -5,8 +5,9 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./constant/**/*.{js,ts,jsx,tsx}",
+    "./templates/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: "media", // or 'media' or 'class'
+  darkMode: "media",
   theme: {
     extend: {
       colors: {
