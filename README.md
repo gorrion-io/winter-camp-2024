@@ -1,20 +1,6 @@
-# Gorrion Winter Camp 2024
+## Project description
 
-## Jak zrealizować zadanie?
-
-Przeczytaj [CONTRIBUTING.md](./CONTRIBUTING.md) i zastosuj się do instrukcji.
-
-## Zadanie
-
-Badania na stacji kosmicznej w przygotowaniu do podróży na Marsa:
-
-Załoga stacji kosmicznej przygotowuje się do długotrwałego pobytu w kosmosie w ramach przygotowań do podróży na Marsa.
-
-**W pliku `lib/crew.ts` przygotuj metodę do łączenia list astronautów, inżynierów i lekarzy z plików JSON i YAML.**
-
-Warunki zaliczenia zadania:
-
-1. Typ pojedyńczego członka zespołu powinien wyglądać w następujący sposób:
+A space team is getting ready for a long trip to Mars. The job was to make a list of team members with specific details:
 
 ```ts
 type CrewMember = {
@@ -25,19 +11,18 @@ type CrewMember = {
 };
 ```
 
-2. Lista członków zespołu powinna zawierać tylko osoby w wieku od 30 do 40 lat.
+The cosmic criteria dictated that only individuals aged between 30 and 40 could embark on the Martian expedition. Additionally, a cosmic endpoint had to be fashioned, presenting an alphabetically sorted list of crew members, equipped with built-in pagination (taking a 'page' parameter). To culminate this cosmic coding voyage, these cosmic travelers were to be displayed within a component, complete with the ability to seamlessly navigate between pages.
 
-3. Stwórz endpoint w pliku `pages/api/crew.ts` i używając metody stworzonej w `lib/crew.ts` zwróć listę członków zespołu w formie tablicy. Lista powinna być posortowana po imieniu w kolejności alfabetycznej. Dane powinny być paginowane i zwracać po 8 osób na stronę. Endpoint powinien przyjmować parametr `page` i zwracać odpowiednią stronę.
+## Crafting a cosmic code journey
 
-4. Użyj `tanstack/react-query` lub `swr` do pobrania danych z endpointu i wyświetlenia ich w komponencie `pages/task/[page].tsx` w formie kart. Komponent powinien zawierać paginację i możliwość zmiany strony.
+I spruced up the visuals using `Tailwind` and `MaterialUI`, giving the project a touch of cosmic flair.
 
-## Kryteria oceny
+To handle YAML files, I enlisted the help of `yaml-js`, making the data manipulation feel like a cosmic breeze.
 
-- Jakość kodu
-- Użyte narzędzia
-- Poprawność działania kodu
+For checking the pagination, I kept it simple with the `jest` library, ensuring our cosmic journey through pages is smooth and trouble-free.
 
-## Podpowiedzi
+## Cosmic capture
 
-- możesz zainstalować dowolne bilbioteki potrzebne do realizacji zadania
-- jeżeli brakuje danych, możesz je wymyślić lub wygenerować
+## Cosmic code voyager
+
+_Aleksandra Kacprzak, January 2024_
