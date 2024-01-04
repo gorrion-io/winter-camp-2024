@@ -1,7 +1,7 @@
-type BaseMemberType = {
+export type BaseMemberType = {
   nationality: string;
   age: number;
-  profession: string;
+  profession: "doctor" | "engineer" | "astronaut";
 };
 
 export type CrewMember = {

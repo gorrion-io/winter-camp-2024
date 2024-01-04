@@ -31,11 +31,7 @@ export const getPaginationData = (
   pageOffset: number,
   members: CrewMember[]
 ) => {
-  const newMembers = getMembersPerPage(
-    MEMBER_PER_PAGE,
-    (pageOffset = 1),
-    members
-  );
+  const newMembers = getMembersPerPage(MEMBER_PER_PAGE, pageOffset, members);
   const totalPage = calculateTotalPage(MEMBER_PER_PAGE, members.length);
   const sortedMembers = sortMembersByName(newMembers);
 
