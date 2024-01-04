@@ -1,9 +1,9 @@
 import { NavItem } from "../../atoms/navButton/navButton";
-import { memo } from "react";
+import { Dispatch, SetStateAction, memo } from "react";
 
 export type PaginationType = {
   pageAmount: number;
-  setPage: (page: number) => Promise<void>;
+  setPage: Dispatch<SetStateAction<number>>;
 };
 
 export const Pagination = memo<PaginationType>(({ pageAmount, setPage }) => {

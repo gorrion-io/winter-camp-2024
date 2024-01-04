@@ -7,7 +7,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
  */
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { page } = req.body;
+  const { data: page } = req.body;
+  console.log("page", page);
   const { members, totalPage } = compositionMembers("crew")(page);
   res.status(200).json({
     members,

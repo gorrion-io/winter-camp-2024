@@ -1,9 +1,9 @@
-import { memo } from "react";
+import { Dispatch, SetStateAction, memo } from "react";
 
 export type NavButtonType = {
   id: number;
   children: number;
-  setPage: (page: number) => Promise<void>;
+  setPage: Dispatch<SetStateAction<number>>;
 };
 
 export const NavItem = memo<NavButtonType>(({ children, setPage, id }) => {
