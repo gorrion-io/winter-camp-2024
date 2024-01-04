@@ -18,10 +18,10 @@ Warunki zaliczenia zadania:
 
 ```ts
 type CrewMember = {
-  fullName: string;
-  nationality: string;
-  age: number;
-  profession: string;
+    fullName: string;
+    nationality: string;
+    age: number;
+    profession: string;
 };
 ```
 
@@ -33,11 +33,11 @@ type CrewMember = {
 
 ## Kryteria oceny
 
-- Jakość kodu
-- Użyte narzędzia
-- Poprawność działania kodu
+-   Jakość kodu
+-   Użyte narzędzia
+-   Poprawność działania kodu
 
 ## Podpowiedzi
 
-- możesz zainstalować dowolne bilbioteki potrzebne do realizacji zadania
-- jeżeli brakuje danych, możesz je wymyślić lub wygenerować
+-   możesz zainstalować dowolne bilbioteki potrzebne do realizacji zadania
+-   jeżeli brakuje danych, możesz je wymyślić lub wygenerować
