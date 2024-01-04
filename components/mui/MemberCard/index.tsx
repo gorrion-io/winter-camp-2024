@@ -11,7 +11,7 @@ type MemberCardProps = {
 export default function MemberCard(props: MemberCardProps) {
   return (
     <>
-      <div>
+      <div className="transition duration-150 ease-in-out transform hover:scale-105 mx-3">
         <Card variant="outlined" sx={{ backgroundColor: "#E5E4E2" }}>
           <CardContent>
             <Typography

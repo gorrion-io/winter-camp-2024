@@ -39,11 +39,11 @@ export default function CrewList() {
 
   return isValidating ? (
     <div className="w-screen h-screen flex justify-center">
-      <p className="text-lg">Loading...</p>
+      <p className="text-lg animate-pulse">Loading...</p>
     </div>
   ) : (
-    <div>
-      <div className="w-11/12 mx-auto mt-5 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3 lg:gap-6">
+    <div className="opacity-100 transition-opacity duration-500 ease-in-out">
+      <div className="w-10/12 md:w-11/12 mx-auto mt-5 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-6 ">
         {crewMembers.map((member, index) => (
           <MemberCard crewMember={member} key={index} />
         ))}
