@@ -4,7 +4,7 @@ export const mapCrew = (
   jsonCrewMembers: JsonCrewMember[],
   yamlCrewMembers: YamlCrewMember[]
 ): CrewMember[] => {
-  const mappedJsonMembers = jsonCrewMembers.map(
+  const mappedJsonMembers: CrewMember[] = jsonCrewMembers.map(
     (member: JsonCrewMember): CrewMember => {
       return {
         fullName: `${member.firstName} ${member.lastName}`,
@@ -15,7 +15,7 @@ export const mapCrew = (
     }
   );
 
-  const mappedYamlMembers = yamlCrewMembers.map(
+  const mappedYamlMembers: CrewMember[] = yamlCrewMembers.map(
     (member: YamlCrewMember): CrewMember => {
       return {
         fullName: member.name,
@@ -28,5 +28,3 @@ export const mapCrew = (
 
   return [...mappedJsonMembers, ...mappedYamlMembers];
 };
-
-// return mappedJsonMembers;
