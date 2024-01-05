@@ -1,12 +1,12 @@
 import type { Meta, StoryFn } from "@storybook/react";
 
-import { NavButton, NavButtonType } from "./navButton";
+import { NavItem, NavItemType } from "./navButton";
 export default {
-  title: "Atoms/NavButton",
-  component: NavButton,
-} as Meta<typeof NavButton>;
+  title: "Atoms/NavItem",
+  component: NavItem,
+} as Meta<typeof NavItem>;
 
-const Template: StoryFn<NavButtonType> = (args) => <NavButton {...args} />;
+const Template: StoryFn<NavItemType> = (args) => <NavItem {...args} />;
 
 export const Primary = Template.bind({});
 

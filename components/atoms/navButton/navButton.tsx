@@ -1,18 +1,24 @@
 import { Dispatch, SetStateAction, memo } from "react";
 
-export type NavButtonType = {
+export type NavItemType = {
   id: number;
-  children: number;
+  children: number | "...";
+  currentPage: number;
   setPage: Dispatch<SetStateAction<number>>;
 };
 
-export const NavItem = memo<NavButtonType>(({ children, setPage, id }) => {
-  return (
-    <div
-      onClick={() => setPage(id)}
-      className="border-[1px]  border-black  flex size-6 md:size-8 mr-2 justify-center items-center cursor-pointer hover:bg-oceanBlue  hover:text-white hover:border-none transition-all ease-in-out duration-300 rounded-full "
-    >
-      {children}
-    </div>
-  );
-});
+export const NavItem = memo<NavItemType>(
+  ({ children, setPage, currentPage, id }) => {
+    console.log("currentPage", currentPage);
+    return (
+      <li
+        onClick={() => setPage(id)}
+        className={`border-[1px]  border-black ${
+          currentPage === id ? "bg-oceanBlue text-white border-none" : ""
+        }  flex size-6 md:size-8 mr-2 justify-center outline-none items-center cursor-pointer hover:bg-oceanBlue  hover:text-white hover:border-none transition-all ease-in-out duration-300 rounded-full `}
+      >
+        {children}
+      </li>
+    );
+  }
+);

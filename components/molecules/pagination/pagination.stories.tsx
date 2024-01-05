@@ -10,5 +10,6 @@ const Template: StoryFn<PaginationType> = (args) => <Pagination {...args} />;
 export const Primary = Template.bind({});
 
 Primary.args = {
-  pageAmount: 8,
+  totalPageCount: 10,
+  currentPage: 5,
 };

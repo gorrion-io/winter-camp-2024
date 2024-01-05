@@ -45,9 +45,7 @@ export const filteredMembersByYear = (members: CrewMember[]) => {
 };
 
 export const sortMembersByName = (members: CrewMember[]) => {
-  return members.sort((a, b) => {
-    return a.fullName < b.fullName ? -1 : 1;
-  });
+  return members.sort((a, b) => (a.fullName < b.fullName ? -1 : 1));
 };
 
 export const getMembersData = (fileName: string) => {

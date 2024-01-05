@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import axios from "axios";
 
 type TanstackHookType<BodyType> = {
@@ -12,14 +12,13 @@ export const UseTanstackFetchHook = <ApiDataType, BodyType>({
   queryKey,
   body,
 }: TanstackHookType<BodyType>) => {
-  console.log("body", body);
-
   const { isPending, error, data } = useQuery({
     queryKey: [queryKey, body],
     queryFn: async () => {
       const { data } = await axios.post<ApiDataType>(url, { data: body });
       return data;
     },
+    placeholderData: keepPreviousData,
   });
 
   return {

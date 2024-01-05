@@ -12,7 +12,7 @@ export type YamlCrewMember = {
   name: string;
   nationality: string;
   years_old: number;
-  occupation: string;
+  occupation: "doctor" | "engineer" | "astronaut";
 };
 
 export type JSONCrewMember = {

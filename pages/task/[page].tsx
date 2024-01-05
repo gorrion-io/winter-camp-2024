@@ -30,14 +30,20 @@ export default function Task() {
   if (isPending) return <div>Loading....</div>;
   if (error || !data) return <div>{error?.message}</div>;
 
+  const { members, totalPage } = data;
+
   return (
     <div className="flex flex-col w-full min-h-screen place-content-center place-items-center p-4 md:p-24 bg-ecrue">
+      <Pagination
+        totalPageCount={totalPage}
+        currentPage={page}
+        setPage={setPage}
+      />
       <GridTemplate>
-        {data.members.map((member, i) => {
+        {members.map((member, i) => {
           return <Card key={i} id={i} member={member} />;
         })}
       </GridTemplate>
-      <Pagination pageAmount={data.totalPage} setPage={setPage} />
     </div>
   );
 }
