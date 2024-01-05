@@ -6,24 +6,20 @@
 import { Card } from "@/components/molecules/Card/card";
 import { Pagination } from "@/components/molecules/pagination/pagination";
 import { UseTanstackFetchHook } from "@/hooks/useTanstackFetchData";
-import { CrewMember } from "@/lib/type";
+import { API_URL, QUERY_KEY } from "@/lib/constant/pagination";
 import { GridTemplate } from "@/templates/GridTemplate";
+import { apiDataType } from "@/types/api";
 
 import { useCallback, useState } from "react";
-
-type apiDataType = {
-  members: CrewMember[];
-  totalPage: number;
-};
 
 export default function Task() {
   const [page, setPage] = useState<number>(1);
 
   const { data, isPending, error } = useCallback(() => {
     return UseTanstackFetchHook<apiDataType, number>({
-      url: "/api/crew",
+      url: API_URL,
       body: page,
-      queryKey: "members",
+      queryKey: QUERY_KEY,
     });
   }, [page])();
 

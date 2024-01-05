@@ -15,7 +15,7 @@ export const UseTanstackFetchHook = <ApiDataType, BodyType>({
   const { isPending, error, data } = useQuery({
     queryKey: [queryKey, body],
     queryFn: async () => {
-      const { data } = await axios.post<ApiDataType>(url, { data: body });
+      const { data } = await axios.post<ApiDataType>(url, { page: body });
       return data;
     },
     placeholderData: keepPreviousData,

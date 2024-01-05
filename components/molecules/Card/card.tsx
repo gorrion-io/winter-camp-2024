@@ -23,16 +23,21 @@ export const Card = memo<CardType>(
           className="absolute top-0 right-0 w-full h-full z-0"
         />
         <div className="flex flex-col w-full mt-auto z-50">
-          <Typography tag="h5" textSize="2xl" textColor="white">
-            {fullName}
+          <Typography tag="h5" textSize="xl" textColor="white">
+            Name: {fullName}
           </Typography>
-          <Typography tag="h4" textSize="xl" textColor="white">
-            {age}
+          <Typography tag="h4" textSize="lg" textColor="white">
+            Age: {age}
           </Typography>
           <Typography tag="h3" textSize="lg" textColor="white">
-            {nationality}
+            Country: {nationality}
           </Typography>
-          <Typography tag="p" textSize="base" textColor="white">
+          <Typography
+            tag="p"
+            textSize="2xl"
+            textColor="white"
+            fontFamily="mono"
+          >
             {profession}
           </Typography>
         </div>
