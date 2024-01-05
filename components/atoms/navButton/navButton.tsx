@@ -9,7 +9,6 @@ export type NavItemType = {
 
 export const NavItem = memo<NavItemType>(
   ({ children, setPage, currentPage, id }) => {
-    console.log("currentPage", currentPage);
     return (
       <li
         onClick={() => setPage(id)}
