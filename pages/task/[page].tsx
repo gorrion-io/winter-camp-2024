@@ -3,6 +3,7 @@
  * @description Use tanstack/react-query or swr to fetch data from the endpoint. Prepare pagination.
  */
 
+import { Spinner } from "@/components/atoms/spinner/spinner";
 import { Card } from "@/components/molecules/Card/card";
 import { Pagination } from "@/components/molecules/pagination/pagination";
 import { UseTanstackFetchHook } from "@/hooks/useTanstackFetchData";
@@ -23,7 +24,7 @@ export default function Task() {
     });
   }, [page])();
 
-  if (isPending) return <div>Loading....</div>;
+  if (isPending) return <Spinner />;
   if (error || !data) return <div>{error?.message}</div>;
 
   const { members, totalPage } = data;
