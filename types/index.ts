@@ -19,3 +19,13 @@ export type CrewMember = {
     years_old: number;
     occupation: string;
   }
+  
+  export type ApiResponse = {
+    fullCrew: CrewMember[];
+    slicedCrew: CrewMember[];
+  };
+  
+  export type ApiError = {
+    error: string;
+  };
+  
