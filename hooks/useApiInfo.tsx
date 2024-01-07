@@ -12,5 +12,7 @@ export const UseApiInfo = async (
   const { push } = useRouter();
 
   if (isPending) return <Spinner />;
-  if (error || !data?.members.length || !data.totalPage) await push(pathToBack);
+  if (error || !data?.members.length || !data?.totalPage) {
+    await push(pathToBack);
+  }
 };
