@@ -3,14 +3,17 @@
  * @description Use tanstack/react-query or swr to fetch data from the endpoint. Prepare pagination.
  */
 
+import { Button } from "@/components/atoms/button/button";
 import { Spinner } from "@/components/atoms/spinner/spinner";
+import { Typography } from "@/components/atoms/typography/typography";
 import { Card } from "@/components/molecules/Card/card";
 import { Pagination } from "@/components/molecules/pagination/pagination";
-import { UseBackRouter } from "@/hooks/useBackRouter";
+import { UseApiInfo } from "@/hooks/useApiInfo";
 import { UseTanstackFetchHook } from "@/hooks/useTanstackFetchData";
 import { API_URL, QUERY_KEY } from "@/lib/constant/pagination";
 import { GridTemplate } from "@/templates/GridTemplate";
 import { apiDataType } from "@/types/api";
+import { useRouter } from "next/router";
 
 import { useCallback, useState } from "react";
 
@@ -25,20 +28,19 @@ export default function Task() {
     });
   }, [page])();
 
-  if (isPending) return <Spinner />;
-  if (error || !data) return UseBackRouter("/", error?.message);
-
-  const { members, totalPage } = data;
+  UseApiInfo("/", data, isPending, error);
 
   return (
     <div className="flex flex-col w-full min-h-screen place-content-center place-items-center p-4 md:p-24 bg-ecrue">
-      <Pagination
-        totalPageCount={totalPage}
-        currentPage={page}
-        setPage={setPage}
-      />
+      {data?.totalPage && (
+        <Pagination
+          totalPageCount={data?.totalPage}
+          currentPage={page}
+          setPage={setPage}
+        />
+      )}
       <GridTemplate>
-        {members.map((member, i) => {
+        {data?.members.map((member, i) => {
           return <Card key={i} id={i} member={member} />;
         })}
       </GridTemplate>
