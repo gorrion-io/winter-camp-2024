@@ -16,7 +16,7 @@ export const Card = memo<CardType>(
     member: { fullName, nationality, age, profession },
   }) => {
     return (
-      <div className="flex relative overflow-hidden flex-col hover:scale-105  transition-all ease-in-out duration-300 bg-ecru w-full max-w-[340px] h-[360px] rounded-xl shadow-lg p-6 border-[1px] border-black cursor-pointer">
+      <div className="flex relative overflow-hidden flex-col hover:scale-105  transition-all ease-in-out duration-300 bg-ecru w-full max-w-[340px] h-[360px] rounded-xl shadow-lg p-6 cursor-pointer">
         <Image
           src={proffesionImage[profession]}
           alt={profession}
@@ -24,7 +24,7 @@ export const Card = memo<CardType>(
         />
         <div className="flex flex-col w-full mt-auto z-50">
           <Typography tag="h5" textSize="xl" textColor="white">
-            Name: {fullName}
+            {fullName}
           </Typography>
           <Typography tag="h4" textSize="lg" textColor="white">
             Age: {age}
@@ -33,7 +33,7 @@ export const Card = memo<CardType>(
             Country: {nationality}
           </Typography>
           <Typography
-            tag="p"
+            tag="cite"
             textSize="2xl"
             textColor="white"
             fontFamily="mono"
