@@ -2,8 +2,8 @@ import { CSSProperties, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const override: CSSProperties = {
-  display: "block",
-  margin: "0 auto",
+  display: "flex",
+  margin: "50vh auto",
   borderColor: "rgba(5,67,190)",
 };
 

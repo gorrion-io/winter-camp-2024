@@ -6,6 +6,7 @@
 import { Spinner } from "@/components/atoms/spinner/spinner";
 import { Card } from "@/components/molecules/Card/card";
 import { Pagination } from "@/components/molecules/pagination/pagination";
+import { UseBackRouter } from "@/hooks/useBackRouter";
 import { UseTanstackFetchHook } from "@/hooks/useTanstackFetchData";
 import { API_URL, QUERY_KEY } from "@/lib/constant/pagination";
 import { GridTemplate } from "@/templates/GridTemplate";
@@ -25,7 +26,7 @@ export default function Task() {
   }, [page])();
 
   if (isPending) return <Spinner />;
-  if (error || !data) return <div>{error?.message}</div>;
+  if (error || !data) return UseBackRouter("/", error?.message);
 
   const { members, totalPage } = data;
 

@@ -39,8 +39,6 @@ export const usePagination = ({
     const lastPage = totalPageCount;
     const adjacentElements = (condition + condition + 1) * siblingCount;
 
-    console.log("showLeftDots", showLeftDots);
-
     if (!showLeftDots && showRightDots) {
       const leftRange = calculateRange(firstPage, adjacentElements);
       return [...leftRange, DOTS, lastPage] as const;
@@ -60,5 +58,6 @@ export const usePagination = ({
     }
     return [];
   }, [totalPageCount, siblingCount, currentPage]);
+
   return paginationRage;
 };
