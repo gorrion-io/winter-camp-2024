@@ -7,7 +7,7 @@ type TanstackHookType<BodyType> = {
   body: BodyType;
 };
 
-export const UseTanstackFetchHook = <ApiDataType, BodyType>({
+export const UseTanstackHook = <ApiDataType, BodyType>({
   url,
   queryKey,
   body,

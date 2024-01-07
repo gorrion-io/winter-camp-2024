@@ -1,7 +1,9 @@
+type Profession = "doctor" | "engineer" | "astronaut";
+
 export type BaseMemberType = {
   nationality: string;
   age: number;
-  profession: "doctor" | "engineer" | "astronaut";
+  profession: Profession;
 };
 
 export type CrewMember = {
@@ -12,7 +14,7 @@ export type YamlCrewMember = {
   name: string;
   nationality: string;
   years_old: number;
-  occupation: "doctor" | "engineer" | "astronaut";
+  occupation: Profession;
 };
 
 export type JSONCrewMember = {

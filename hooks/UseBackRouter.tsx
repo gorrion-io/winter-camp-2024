@@ -1,18 +1,17 @@
 import { Spinner } from "@/components/atoms/spinner/spinner";
-import { apiDataType } from "@/types/api";
-
 import { useRouter } from "next/router";
 
-export const UseApiInfo = async (
+export const UseBackRouter = async <T extends unknown[]>(
   pathToBack: string,
-  data: apiDataType | undefined,
-  isPending: boolean,
-  error: Error | null
+  data: T | undefined,
+  error: Error | null,
+  isPending: boolean
 ) => {
   const { push } = useRouter();
 
   if (isPending) return <Spinner />;
-  if (error || !data?.members.length || !data?.totalPage) {
+
+  if (error || !data?.length) {
     await push(pathToBack);
   }
 };

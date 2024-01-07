@@ -38,13 +38,13 @@ export const Pagination = memo<PaginationType>(
             />
           </li>
 
-          {paginationRange.map((item) => {
-            if (item === DOTS) return <li>{DOTS}</li>;
+          {paginationRange.map((item, i) => {
+            if (item === DOTS) return <li key={i}>{DOTS}</li>;
             return (
               <NavItem
                 setPage={setPage}
                 currentPage={currentPage}
-                key={item}
+                key={i}
                 id={item}
               >
                 {item}
