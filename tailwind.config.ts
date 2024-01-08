@@ -14,6 +14,7 @@ const config: Config = {
         primaryBlack: "rgba(32,32,32)",
         primaryWhite: "rgba(255,255,255)",
         primaryGray: "rgba(0, 0, 0, 0.05)",
+        primaryOrange: "rgb(255,140,0)",
         primaryRed: "rgba(164,42,55)",
         oceanBlue: "rgba(5,67,190)",
         cashmere: "rgba(228,201,164)",

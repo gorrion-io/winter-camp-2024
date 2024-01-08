@@ -1,5 +1,4 @@
 import { Button } from "@/components/atoms/button/button";
-import { TanstackProvider } from "@/providers/TanstackProvider";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 

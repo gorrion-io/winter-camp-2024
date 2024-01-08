@@ -1,3 +1,4 @@
+import { InfoType } from "@/components/molecules/InfoCard/Card/infoCard";
 import { ColorVariantsType } from "@/types/variants";
 
 export const ColorVariants: ColorVariantsType = {
@@ -30,6 +31,12 @@ export const ColorVariants: ColorVariantsType = {
     text: "text-glassCard",
   },
   transparent: {
-    bg: "bg-transparent text-black border-[1px] border-black",
+    bg: "bg-transparent text-black border-[1px] border-white",
   },
+};
+
+export const BgInfoCardType: Record<InfoType, string> = {
+  ERROR: "bg-primaryRed",
+  WARRNING: "bg-primaryOrange",
+  SUCCESS: "bg-oceanBlue",
 };
