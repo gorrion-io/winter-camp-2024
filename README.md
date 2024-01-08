@@ -41,3 +41,19 @@ type CrewMember = {
 
 - możesz zainstalować dowolne bilbioteki potrzebne do realizacji zadania
 - jeżeli brakuje danych, możesz je wymyślić lub wygenerować
+
+### At the end of the task
+
+Hi everyone,
+
+a small update from my side:
+
+- I have created a small library of dynamic components in tailwind ( in the future you can make a separate package from it and it can be used for other projects)
+- Atomic Design approach
+- I implemented storyBook so that components can be previewed.
+- I tried to keep the principle of single responsibility.
+- I created a Special hook to paginate pages in case the number of pages would be really large (usePagination)
+
+I would like to hear your opinion on what can be improved
+
+Greetings Jakub !
