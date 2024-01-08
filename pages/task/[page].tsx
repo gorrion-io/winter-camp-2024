@@ -11,22 +11,16 @@ import { UseTanstackHook } from "@/hooks/useTanstackFetchData";
 import { API_URL, QUERY_KEY } from "@/lib/constant/pagination";
 import { GridTemplate } from "@/templates/GridTemplate";
 import { ApiDataType } from "@/types/api";
-import { FC, useCallback, useState } from "react";
+import { useState } from "react";
 
-type PageProps = {
-  params: { name: string };
-};
-
-const Task: FC<PageProps> = ({ params }) => {
+export default function Task() {
   const [page, setPage] = useState<number>(1);
 
-  const { data, isPending, error } = useCallback(() => {
-    return UseTanstackHook<ApiDataType, number>({
-      url: API_URL,
-      body: page,
-      queryKey: QUERY_KEY,
-    });
-  }, [page])();
+  const { data, isPending, error } = UseTanstackHook<ApiDataType, number>({
+    url: API_URL,
+    body: page,
+    queryKey: QUERY_KEY,
+  });
 
   if (isPending) return <Spinner />;
 
@@ -49,6 +43,4 @@ const Task: FC<PageProps> = ({ params }) => {
       </GridTemplate>
     </div>
   );
-};
-
-export default Task;
+}

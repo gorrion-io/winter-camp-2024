@@ -1,7 +1,8 @@
+import Link from "next/link";
 import { NavArrow } from "../../../components/atoms/navArrow/navArrow";
 import { DOTS, usePagination } from "../../../hooks/usePagination";
 import { NavItem } from "../../atoms/navButton/navButton";
-import { Dispatch, SetStateAction, memo } from "react";
+import { Dispatch, SetStateAction, memo, useCallback } from "react";
 
 import { PiArrowCircleLeftThin } from "react-icons/pi";
 import { PiArrowCircleRightThin } from "react-icons/pi";
@@ -19,16 +20,24 @@ export const Pagination = memo<PaginationType>(
       siblingCount: 1,
       currentPage,
     });
+    const onNext = useCallback(() => {
+      return setPage((prev) => prev + 1);
+    }, [setPage]);
+
+    const onPrevious = useCallback(() => {
+      return setPage((prev) => prev - 1);
+    }, [setPage]);
 
     if (!currentPage || !paginationRange.length) return <></>;
-
-    const onNext = () => setPage(currentPage + 1);
-    const onPrevious = () => setPage(currentPage - 1);
 
     return (
       <div className="relative w-full my-4 md:w-2/4 margin-auto h-[60px]  rounded-lg shadow-lg bg-ecru outline-none">
         <ul className="flex w-full h-full justify-center items-center outline-none">
-          <li className="w-10 mx-2">
+          <Link
+            href={`/task/${currentPage - 1}`}
+            passHref
+            className="w-10 mx-2"
+          >
             <NavArrow
               pageNumber={1}
               size={35}
@@ -36,7 +45,7 @@ export const Pagination = memo<PaginationType>(
               Icon={PiArrowCircleLeftThin}
               onClick={onPrevious}
             />
-          </li>
+          </Link>
 
           {paginationRange.map((item, i) => {
             if (item === DOTS) return <li key={i}>{DOTS}</li>;
@@ -51,7 +60,7 @@ export const Pagination = memo<PaginationType>(
               </NavItem>
             );
           })}
-          <li className="w-10 mx-2">
+          <Link href={`/task/${currentPage + 1}`} className="w-10 mx-2">
             <NavArrow
               pageNumber={paginationRange[paginationRange.length - 1]}
               size={35}
@@ -59,7 +68,7 @@ export const Pagination = memo<PaginationType>(
               Icon={PiArrowCircleRightThin}
               onClick={onNext}
             />
-          </li>
+          </Link>
         </ul>
       </div>
     );
